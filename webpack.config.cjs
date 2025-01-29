@@ -15,6 +15,7 @@ module.exports = [
       filename: '[name].umd.min.js',
       library: 'git',
       libraryTarget: 'umd',
+      hashFunction: 'sha256',
     },
     mode: 'production',
     devtool: 'source-map',

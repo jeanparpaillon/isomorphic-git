@@ -112,6 +112,7 @@ docs/isIgnored.md
 docs/listBranches.md
 docs/listFiles.md
 docs/listNotes.md
+docs/listRefs.md
 docs/listRemotes.md
 docs/listServerRefs.md
 docs/listTags.md
@@ -145,3 +146,8 @@ docs/writeObject.md
 docs/writeRef.md
 docs/writeTag.md
 docs/writeTree.md
+
+.history/
+index.umd.min.js.LICENSE.txt
+internal-apis.umd.min.js.LICENSE.txt
+website/versioned_docs/version-1.x/listRefs.md
