@@ -1,5 +1,5 @@
 // @ts-check
-import '../typedefs.js'
+import * as types from '../typedefs.js'
 
 import { _walk } from '../commands/walk.js'
 import { FileSystem } from '../models/FileSystem.js'
@@ -240,10 +240,10 @@ import { join } from '../utils/join.js'
  * However you could use a custom function to traverse children serially or use a global queue to throttle recursion.
  *
  * @param {object} args
- * @param {FsClient} args.fs - a file system client
- * @param {string} [args.dir] - The [working tree](dir-vs-gitdir.md) directory path
+ * @param {types.FsClient} args.fs - a file system client
+ * @param {string} args.dir - The [working tree](dir-vs-gitdir.md) directory path
  * @param {string} [args.gitdir=join(dir,'.git')] - [required] The [git directory](dir-vs-gitdir.md) path
- * @param {Walker[]} args.trees - The trees you want to traverse
+ * @param {types.Walker[]} args.trees - The trees you want to traverse
  * @param {WalkerMap} [args.map] - Transform `WalkerEntry`s into a result form
  * @param {WalkerReduce} [args.reduce] - Control how mapped entries are combined with their parent result
  * @param {WalkerIterate} [args.iterate] - Fine-tune how entries within a tree are iterated over

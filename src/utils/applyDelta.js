@@ -1,3 +1,4 @@
+// @ts-check
 import { InternalError } from '../errors/InternalError.js'
 import { BufferCursor } from '../utils/BufferCursor.js'
 

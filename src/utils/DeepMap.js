@@ -1,3 +1,4 @@
+// @ts-check
 const deepget = (keys, map) => {
   for (const key of keys) {
     if (!map.has(key)) map.set(key, new Map())

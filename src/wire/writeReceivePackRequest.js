@@ -1,5 +1,19 @@
+// @ts-check
 import { GitPktLine } from '../models/GitPktLine.js'
 
+/**
+ * @typedef {Object} PackTriplet
+ * @property {string} oldoid
+ * @property {string} oid
+ * @property {string} fullRef
+ */
+ 
+/**  
+ * @param {Object} args
+ * @param {string[]} args.capabilities
+ * @param {PackTriplet[]} args.triplets
+ * @returns 
+ */
 export async function writeReceivePackRequest({
   capabilities = [],
   triplets = [],

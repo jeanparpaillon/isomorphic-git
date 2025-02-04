@@ -1,5 +1,5 @@
 // @ts-check
-import '../typedefs.js'
+import * as types from '../typedefs.js'
 
 import { _currentBranch } from '../commands/currentBranch.js'
 import { _findMergeBase } from '../commands/findMergeBase.js'
@@ -29,11 +29,11 @@ import { writeReceivePackRequest } from '../wire/writeReceivePackRequest.js'
  * @param {any} args.cache
  * @param {HttpClient} args.http
  * @param {ProgressCallback} [args.onProgress]
- * @param {MessageCallback} [args.onMessage]
- * @param {AuthCallback} [args.onAuth]
- * @param {AuthFailureCallback} [args.onAuthFailure]
- * @param {AuthSuccessCallback} [args.onAuthSuccess]
- * @param {PrePushCallback} [args.onPrePush]
+ * @param {types.MessageCallback} [args.onMessage]
+ * @param {types.AuthCallback} [args.onAuth]
+ * @param {types.AuthFailureCallback} [args.onAuthFailure]
+ * @param {types.AuthSuccessCallback} [args.onAuthSuccess]
+ * @param {types.PrePushCallback} [args.onPrePush]
  * @param {string} args.gitdir
  * @param {string} [args.ref]
  * @param {string} [args.remoteRef]
@@ -44,7 +44,7 @@ import { writeReceivePackRequest } from '../wire/writeReceivePackRequest.js'
  * @param {string} [args.corsProxy]
  * @param {Object<string, string>} [args.headers]
  *
- * @returns {Promise<PushResult>}
+ * @returns {Promise<types.PushResult>}
  */
 export async function _push({
   fs,
@@ -59,7 +59,7 @@ export async function _push({
   gitdir,
   ref: _ref,
   remoteRef: _remoteRef,
-  remote,
+  remote = '',
   url: _url,
   force = false,
   delete: _delete = false,

@@ -1,6 +1,7 @@
 // @ts-check
-import '../typedefs.js'
+import * as types from '../typedefs.js'
 
+import { FileSystem } from '../models/FileSystem.js'
 import { _commit } from '../commands/commit.js'
 import { _currentBranch } from '../commands/currentBranch.js'
 import { _findMergeBase } from '../commands/findMergeBase.js'
@@ -26,30 +27,23 @@ import { mergeTree } from '../utils/mergeTree.js'
 
 /**
  * @param {object} args
- * @param {import('../models/FileSystem.js').FileSystem} args.fs
+ * @param {FileSystem} args.fs
  * @param {object} args.cache
+ * @param {string} args.dir
  * @param {string} args.gitdir
- * @param {string} [args.ours]
+ * @param {string | undefined} [args.ours = undefined]
  * @param {string} args.theirs
- * @param {boolean} args.fastForward
- * @param {boolean} args.fastForwardOnly
- * @param {boolean} args.dryRun
- * @param {boolean} args.noUpdateBranch
- * @param {boolean} args.abortOnConflict
- * @param {string} [args.message]
- * @param {Object} args.author
- * @param {string} args.author.name
- * @param {string} args.author.email
- * @param {number} args.author.timestamp
- * @param {number} args.author.timezoneOffset
- * @param {Object} args.committer
- * @param {string} args.committer.name
- * @param {string} args.committer.email
- * @param {number} args.committer.timestamp
- * @param {number} args.committer.timezoneOffset
+ * @param {boolean} [args.fastForward = true]
+ * @param {boolean} [args.fastForwardOnly = false]
+ * @param {boolean} [args.dryRun = false]
+ * @param {boolean} [args.noUpdateBranch = false]
+ * @param {boolean} [args.abortOnConflict = true]
+ * @param {string | undefined} [args.message = undefined]
+ * @param {types.PersonInfo | undefined} [args.author]
+ * @param {types.PersonInfo | undefined} [args.committer]
  * @param {string} [args.signingKey]
- * @param {SignCallback} [args.onSign] - a PGP signing implementation
- * @param {MergeDriverCallback} [args.mergeDriver]
+ * @param {types.SignCallback} [args.onSign] - a PGP signing implementation
+ * @param {types.MergeDriverCallback} [args.mergeDriver]
  *
  * @returns {Promise<MergeResult>} Resolves to a description of the merge operation
  *
@@ -66,7 +60,7 @@ export async function _merge({
   dryRun = false,
   noUpdateBranch = false,
   abortOnConflict = true,
-  message,
+  message = undefined,
   author,
   committer,
   signingKey,
@@ -75,6 +69,9 @@ export async function _merge({
 }) {
   if (ours === undefined) {
     ours = await _currentBranch({ fs, gitdir, fullname: true })
+    if (ours === undefined) {
+      throw new Error('can not merge in detached mode')
+    }
   }
   ours = await GitRefManager.expand({
     fs,

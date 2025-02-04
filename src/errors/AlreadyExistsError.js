@@ -1,8 +1,9 @@
+// @ts-check
 import { BaseError } from './BaseError.js'
 
 export class AlreadyExistsError extends BaseError {
   /**
-   * @param {'note'|'remote'|'tag'|'branch'} noun
+   * @param {'note'|'remote'|'tag'|'branch'|'ref'} noun
    * @param {string} where
    * @param {boolean} canForce
    */

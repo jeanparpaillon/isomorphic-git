@@ -1,5 +1,5 @@
 // @ts-check
-import '../typedefs.js'
+import * as types from '../typedefs.js'
 
 import { _addRemote } from '../commands/addRemote.js'
 import { FileSystem } from '../models/FileSystem.js'
@@ -10,8 +10,8 @@ import { join } from '../utils/join.js'
  * Add or update a remote
  *
  * @param {object} args
- * @param {FsClient} args.fs - a file system implementation
- * @param {string} [args.dir] - The [working tree](dir-vs-gitdir.md) directory path
+ * @param {types.FsClient} args.fs - a file system implementation
+ * @param {string} args.dir - The [working tree](dir-vs-gitdir.md) directory path
  * @param {string} [args.gitdir] - [required] The [git directory](dir-vs-gitdir.md) path
  * @param {string} args.remote - The name of the remote
  * @param {string} args.url - The URL of the remote

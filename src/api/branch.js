@@ -1,5 +1,5 @@
 // @ts-check
-import '../typedefs.js'
+import * as types from '../typedefs.js'
 
 import { _branch } from '../commands/branch.js'
 import { FileSystem } from '../models/FileSystem.js'
@@ -10,8 +10,8 @@ import { join } from '../utils/join.js'
  * Create a branch
  *
  * @param {object} args
- * @param {FsClient} args.fs - a file system implementation
- * @param {string} [args.dir] - The [working tree](dir-vs-gitdir.md) directory path
+ * @param {types.FsClient} args.fs - a file system implementation
+ * @param {string} args.dir - The [working tree](dir-vs-gitdir.md) directory path
  * @param {string} [args.gitdir=join(dir,'.git')] - [required] The [git directory](dir-vs-gitdir.md) path
  * @param {string} args.ref - What to name the branch
  * @param {string} [args.object = 'HEAD'] - What oid to use as the start point. Accepts a symbolic ref.

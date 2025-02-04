@@ -1,3 +1,4 @@
+// @ts-check
 import { GitObject } from '../models/GitObject.js'
 import { shasum } from '../utils/shasum.js'
 

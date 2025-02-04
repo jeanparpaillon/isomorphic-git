@@ -1,5 +1,5 @@
 // @ts-check
-import '../typedefs.js'
+import * as types from '../typedefs.js'
 
 import { _push } from '../commands/push.js'
 import { FileSystem } from '../models/FileSystem.js'
@@ -18,15 +18,15 @@ import { join } from '../utils/join.js'
  * | errors | Array\<string\>  | If the overall operation threw and error, the first item will be "unpack {Overall error message}". The remaining items are individual refs that failed to be updated in the format "{ref name} {error message}". |
  *
  * @param {object} args
- * @param {FsClient} args.fs - a file system client
+ * @param {types.FsClient} args.fs - a file system client
  * @param {HttpClient} args.http - an HTTP client
  * @param {ProgressCallback} [args.onProgress] - optional progress event callback
- * @param {MessageCallback} [args.onMessage] - optional message event callback
- * @param {AuthCallback} [args.onAuth] - optional auth fill callback
- * @param {AuthFailureCallback} [args.onAuthFailure] - optional auth rejected callback
- * @param {AuthSuccessCallback} [args.onAuthSuccess] - optional auth approved callback
- * @param {PrePushCallback} [args.onPrePush] - optional pre-push hook callback
- * @param {string} [args.dir] - The [working tree](dir-vs-gitdir.md) directory path
+ * @param {types.MessageCallback} [args.onMessage] - optional message event callback
+ * @param {types.AuthCallback} [args.onAuth] - optional auth fill callback
+ * @param {types.AuthFailureCallback} [args.onAuthFailure] - optional auth rejected callback
+ * @param {types.AuthSuccessCallback} [args.onAuthSuccess] - optional auth approved callback
+ * @param {types.PrePushCallback} [args.onPrePush] - optional pre-push hook callback
+ * @param {string} args.dir - The [working tree](dir-vs-gitdir.md) directory path
  * @param {string} [args.gitdir=join(dir,'.git')] - [required] The [git directory](dir-vs-gitdir.md) path
  * @param {string} [args.ref] - Which branch or tag to push. By default this is the currently checked out branch.
  * @param {string} [args.url] - The URL of the remote repository. The default is the value set in the git config for that remote.
@@ -38,7 +38,7 @@ import { join } from '../utils/join.js'
  * @param {Object<string, string>} [args.headers] - Additional headers to include in HTTP requests, similar to git's `extraHeader` config
  * @param {object} [args.cache] - a [cache](cache.md) object
  *
- * @returns {Promise<PushResult>} Resolves successfully when push completes with a detailed description of the operation from the server.
+ * @returns {Promise<types.PushResult>} Resolves successfully when push completes with a detailed description of the operation from the server.
  * @see PushResult
  * @see RefUpdateStatus
  *

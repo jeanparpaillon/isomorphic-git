@@ -1,5 +1,5 @@
 // @ts-check
-import '../typedefs.js'
+import * as types from '../typedefs.js'
 
 import { ObjectTypeError } from '../errors/ObjectTypeError.js'
 import { FileSystem } from '../models/FileSystem.js'
@@ -37,7 +37,7 @@ import { resolveFilepath } from '../utils/resolveFilepath.js'
  *
  * @typedef {Object} RawObject
  * @property {string} oid
- * @property {'blob'|'commit'|'tree'|'tag'} type
+ * @property {types.ObjectType} type
  * @property {'content'} format
  * @property {Uint8Array} object
  * @property {string} [source]
@@ -61,7 +61,7 @@ import { resolveFilepath } from '../utils/resolveFilepath.js'
  * @property {string} oid
  * @property {'commit'} type
  * @property {'parsed'} format
- * @property {CommitObject} object
+ * @property {types.CommitObject} object
  * @property {string} [source]
  *
  */
@@ -72,7 +72,7 @@ import { resolveFilepath } from '../utils/resolveFilepath.js'
  * @property {string} oid
  * @property {'tree'} type
  * @property {'parsed'} format
- * @property {TreeObject} object
+ * @property {types.TreeObject} object
  * @property {string} [source]
  *
  */
@@ -83,7 +83,7 @@ import { resolveFilepath } from '../utils/resolveFilepath.js'
  * @property {string} oid
  * @property {'tag'} type
  * @property {'parsed'} format
- * @property {TagObject} object
+ * @property {types.TagObject} object
  * @property {string} [source]
  *
  */
@@ -160,8 +160,8 @@ import { resolveFilepath } from '../utils/resolveFilepath.js'
  * > If you know the type of object you are reading, use [`readBlob`](./readBlob.md), [`readCommit`](./readCommit.md), [`readTag`](./readTag.md), or [`readTree`](./readTree.md).
  *
  * @param {object} args
- * @param {FsClient} args.fs - a file system client
- * @param {string} [args.dir] - The [working tree](dir-vs-gitdir.md) directory path
+ * @param {types.FsClient} args.fs - a file system client
+ * @param {string} args.dir - The [working tree](dir-vs-gitdir.md) directory path
  * @param {string} [args.gitdir=join(dir,'.git')] - [required] The [git directory](dir-vs-gitdir.md) path
  * @param {string} args.oid - The SHA-1 object id to get
  * @param {'deflated' | 'wrapped' | 'content' | 'parsed'} [args.format = 'parsed'] - What format to return the object in. The choices are described in more detail below.
@@ -259,8 +259,7 @@ export async function readObject({
         default:
           throw new ObjectTypeError(
             result.oid,
-            result.type,
-            'blob|commit|tag|tree'
+            result.type
           )
       }
     } else if (result.format === 'deflated' || result.format === 'wrapped') {

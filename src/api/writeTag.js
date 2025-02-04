@@ -1,5 +1,5 @@
 // @ts-check
-import '../typedefs.js'
+import * as types from '../typedefs.js'
 
 import { _writeTag } from '../commands/writeTag.js'
 import { FileSystem } from '../models/FileSystem.js'
@@ -10,10 +10,10 @@ import { join } from '../utils/join.js'
  * Write an annotated tag object directly
  *
  * @param {object} args
- * @param {FsClient} args.fs - a file system client
- * @param {string} [args.dir] - The [working tree](dir-vs-gitdir.md) directory path
+ * @param {types.FsClient} args.fs - a file system client
+ * @param {string} args.dir - The [working tree](dir-vs-gitdir.md) directory path
  * @param {string} [args.gitdir=join(dir,'.git')] - [required] The [git directory](dir-vs-gitdir.md) path
- * @param {TagObject} args.tag - The object to write
+ * @param {types.TagObject} args.tag - The object to write
  *
  * @returns {Promise<string>} Resolves successfully with the SHA-1 object id of the newly written object
  * @see TagObject

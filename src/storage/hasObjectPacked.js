@@ -1,3 +1,4 @@
+// @ts-check
 import { InternalError } from '../errors/InternalError.js'
 import { readPackIndex } from '../storage/readPackIndex.js'
 import { join } from '../utils/join.js'

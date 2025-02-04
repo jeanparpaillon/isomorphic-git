@@ -1,3 +1,4 @@
+// @ts-check
 import { GitConfigManager } from '../managers/GitConfigManager.js'
 import { GitIndexManager } from '../managers/GitIndexManager.js'
 import { compareStats } from '../utils/compareStats.js'

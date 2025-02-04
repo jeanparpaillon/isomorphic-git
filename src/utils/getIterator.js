@@ -1,3 +1,4 @@
+// @ts-check
 import { fromValue } from '../utils/fromValue.js'
 
 export function getIterator(iterable) {

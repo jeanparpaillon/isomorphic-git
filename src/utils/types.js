@@ -1,3 +1,4 @@
+// @ts-check
 export function isPromiseLike(obj) {
   return isObject(obj) && isFunction(obj.then) && isFunction(obj.catch)
 }

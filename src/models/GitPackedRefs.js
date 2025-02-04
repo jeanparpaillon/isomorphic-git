@@ -1,3 +1,4 @@
+// @ts-check
 export class GitPackedRefs {
   constructor(text) {
     this.refs = new Map()

@@ -6,7 +6,7 @@ import { join } from '../utils/join.js'
  *
  * @param {object} args
  * @param {import('../models/FileSystem.js').FileSystem} args.fs
- * @param {string} [args.dir]
+ * @param {string} args.dir
  * @param {string} [args.gitdir]
  * @param {boolean} [args.bare = false]
  * @param {string} [args.defaultBranch = 'master']

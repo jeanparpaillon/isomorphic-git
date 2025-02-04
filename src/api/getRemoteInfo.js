@@ -1,5 +1,5 @@
 // @ts-check
-import '../typedefs.js'
+import * as types from '../typedefs.js'
 
 import { GitRemoteManager } from '../managers/GitRemoteManager.js'
 import { assertParameter } from '../utils/assertParameter.js'
@@ -24,9 +24,9 @@ import { assertParameter } from '../utils/assertParameter.js'
  *
  * @param {object} args
  * @param {HttpClient} args.http - an HTTP client
- * @param {AuthCallback} [args.onAuth] - optional auth fill callback
- * @param {AuthFailureCallback} [args.onAuthFailure] - optional auth rejected callback
- * @param {AuthSuccessCallback} [args.onAuthSuccess] - optional auth approved callback
+ * @param {types.AuthCallback} [args.onAuth] - optional auth fill callback
+ * @param {types.AuthFailureCallback} [args.onAuthFailure] - optional auth rejected callback
+ * @param {types.AuthSuccessCallback} [args.onAuthSuccess] - optional auth approved callback
  * @param {string} args.url - The URL of the remote repository. Will be gotten from gitconfig if absent.
  * @param {string} [args.corsProxy] - Optional [CORS proxy](https://www.npmjs.com/%40isomorphic-git/cors-proxy). Overrides value in repo config.
  * @param {boolean} [args.forPush = false] - By default, the command queries the 'fetch' capabilities. If true, it will ask for the 'push' capabilities.

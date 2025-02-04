@@ -17,7 +17,7 @@ import { GitRefManager } from '../managers/GitRefManager.js'
 
 export async function _listNotes({ fs, cache, gitdir, ref }) {
   // Get the current note commit
-  let parent
+  let parent = ''
   try {
     parent = await GitRefManager.resolve({ gitdir, fs, ref })
   } catch (err) {

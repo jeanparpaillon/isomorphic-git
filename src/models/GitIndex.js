@@ -1,3 +1,4 @@
+// @ts-check
 import { InternalError } from '../errors/InternalError.js'
 import { UnsafeFilepathError } from '../errors/UnsafeFilepathError.js'
 import { BufferCursor } from '../utils/BufferCursor.js'
@@ -171,6 +172,14 @@ export class GitIndex {
     }
   }
 
+  /**
+   * 
+   * @param {object} opts
+   * @param {string} opts.filepath
+   * @param {object} [opts.stats]
+   * @param {string} opts.oid
+   * @param {number} [opts.stage=0]
+   */
   insert({ filepath, stats, oid, stage = 0 }) {
     if (!stats) {
       stats = {

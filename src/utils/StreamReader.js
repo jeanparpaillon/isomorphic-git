@@ -1,3 +1,4 @@
+// @ts-check
 import { getIterator } from './getIterator.js'
 
 // inspired by 'gartal' but lighter-weight and more battle-tested.

@@ -1,4 +1,5 @@
 // @ts-check
+import { FileSystem } from '../models/FileSystem.js'
 import { GitTree } from '../models/GitTree.js'
 import { _readObject as readObject } from '../storage/readObject.js'
 
@@ -8,6 +9,16 @@ import { resolveTree } from './resolveTree.js'
 // the empty file content object id
 const EMPTY_OID = 'e69de29bb2d1d6434b8b29ae775ad8c2e48c5391'
 
+/**
+ * 
+ * @param {Object} args
+ * @param {FileSystem} args.fs
+ * @param {any} args.cache
+ * @param {string} args.gitdir
+ * @param {string} args.oid
+ * @param {string} args.fileId
+ * @returns 
+ */
 export async function resolveFileIdInTree({ fs, cache, gitdir, oid, fileId }) {
   if (fileId === EMPTY_OID) return
   const _oid = oid
@@ -33,6 +44,19 @@ export async function resolveFileIdInTree({ fs, cache, gitdir, oid, fileId }) {
   return filepath
 }
 
+/**
+ * 
+ * @param {Object} args
+ * @param {FileSystem} args.fs
+ * @param {any} args.cache
+ * @param {string} args.gitdir
+ * @param {GitTree} args.tree
+ * @param {string} args.fileId
+ * @param {string} args.oid
+ * @param {string[]} [args.filepaths = []]
+ * @param {string} [args.parentPath]
+ * @returns 
+ */
 async function _resolveFileId({
   fs,
   cache,

@@ -1,4 +1,6 @@
 // @ts-check
+import * as types from '../typedefs.js'
+
 import { _commit } from '../commands/commit.js'
 import { _readTree } from '../commands/readTree.js'
 import { _writeTree } from '../commands/writeTree.js'
@@ -9,9 +11,8 @@ import { GitRefManager } from '../managers/GitRefManager.js'
  * @param {object} args
  * @param {import('../models/FileSystem.js').FileSystem} args.fs
  * @param {object} args.cache
- * @param {SignCallback} [args.onSign]
- * @param {string} [args.dir]
- * @param {string} [args.gitdir=join(dir,'.git')]
+ * @param {types.SignCallback} [args.onSign]
+ * @param {string} args.gitdir
  * @param {string} [args.ref]
  * @param {string} args.oid
  * @param {Object} args.author
@@ -41,7 +42,7 @@ export async function _removeNote({
   signingKey,
 }) {
   // Get the current note commit
-  let parent
+  let parent = ''
   try {
     parent = await GitRefManager.resolve({ gitdir, fs, ref })
   } catch (err) {
@@ -53,6 +54,7 @@ export async function _removeNote({
   // I'm using the "empty tree" magic number here for brevity
   const result = await _readTree({
     fs,
+    cache,
     gitdir,
     oid: parent || '4b825dc642cb6eb9a060e54bf8d69288fbee4904',
   })
@@ -76,7 +78,7 @@ export async function _removeNote({
     gitdir,
     ref,
     tree: treeOid,
-    parent: parent && [parent],
+    parent: [parent],
     message: `Note removed by 'isomorphic-git removeNote'\n`,
     author,
     committer,

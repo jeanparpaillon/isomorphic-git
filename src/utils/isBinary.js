@@ -1,3 +1,4 @@
+// @ts-check
 /**
  * Determine whether a file is binary (and therefore not worth trying to merge automatically)
  *

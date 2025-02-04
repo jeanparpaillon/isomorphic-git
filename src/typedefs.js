@@ -1,4 +1,16 @@
+// @ts-check
 import './typedefs-http.js'
+
+/**
+ * A commit author or committer.
+ * 
+ * @typedef {Object} PersonInfo
+ * @property {string} name - The name of the author or committer
+ * @property {string} email - The email of the author or committer
+ * @property {number} timestamp - UTC Unix timestamp in seconds
+ * @property {number} timezoneOffset - Timezone difference from UTC in minutes
+ * 
+ */
 
 /**
  * A git commit object.
@@ -7,17 +19,19 @@ import './typedefs-http.js'
  * @property {string} message Commit message
  * @property {string} tree SHA-1 object id of corresponding file tree
  * @property {string[]} parent an array of zero or more SHA-1 object ids
- * @property {Object} author
- * @property {string} author.name The author's name
- * @property {string} author.email The author's email
- * @property {number} author.timestamp UTC Unix timestamp in seconds
- * @property {number} author.timezoneOffset Timezone difference from UTC in minutes
- * @property {Object} committer
- * @property {string} committer.name The committer's name
- * @property {string} committer.email The committer's email
- * @property {number} committer.timestamp UTC Unix timestamp in seconds
- * @property {number} committer.timezoneOffset Timezone difference from UTC in minutes
+ * @property {PersonInfo} author
+ * @property {PersonInfo} committer
  * @property {string} [gpgsig] PGP signature (if present)
+ */
+
+/**
+ * Raw object type
+ * @typedef {'blob'|'tree'|'commit'|'tag'} ObjectType
+ */
+
+/**
+ * A tree entry type
+ * @typedef {'commit'|'blob'|'tree'} TreeEntryType
  */
 
 /**
@@ -27,7 +41,7 @@ import './typedefs-http.js'
  * @property {string} mode the 6 digit hexadecimal mode
  * @property {string} path the name of the file or directory
  * @property {string} oid the SHA-1 object id of the blob or tree
- * @property {'commit'|'blob'|'tree'} type the type of object
+ * @property {TreeEntryType} type the type of object
  */
 
 /**
@@ -41,13 +55,9 @@ import './typedefs-http.js'
  *
  * @typedef {Object} TagObject
  * @property {string} object SHA-1 object id of object being tagged
- * @property {'blob' | 'tree' | 'commit' | 'tag'} type the type of the object being tagged
+ * @property {TreeEntryType} type the type of the object being tagged
  * @property {string} tag the tag name
- * @property {Object} tagger
- * @property {string} tagger.name the tagger's name
- * @property {string} tagger.email the tagger's email
- * @property {number} tagger.timestamp UTC Unix timestamp in seconds
- * @property {number} tagger.timezoneOffset timezone difference from UTC in minutes
+ * @property {PersonInfo} tagger
  * @property {string} message tag message
  * @property {string} [gpgsig] PGP signature (if present)
  */
@@ -89,13 +99,17 @@ import './typedefs-http.js'
  */
 
 /**
+ * @typedef {'tree'|'blob'|'special'|'commit'} WalkerEntryType
+ */
+
+/**
  * The `WalkerEntry` is an interface that abstracts computing many common tree / blob stats.
  *
  * @typedef {Object} WalkerEntry
- * @property {function(): Promise<'tree'|'blob'|'special'|'commit'>} type
+ * @property {function(): Promise<WalkerEntryType>} type
  * @property {function(): Promise<number>} mode
  * @property {function(): Promise<string>} oid
- * @property {function(): Promise<Uint8Array|void>} content
+ * @property {function(): Promise<Uint8Array|undefined>} content
  * @property {function(): Promise<Stat>} stat
  */
 

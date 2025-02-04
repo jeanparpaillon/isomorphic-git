@@ -1,3 +1,4 @@
+// @ts-check
 // Modeled after https://github.com/tjfontaine/node-buffercursor
 // but with the goal of being much lighter weight.
 export class BufferCursor {

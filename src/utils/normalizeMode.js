@@ -1,3 +1,4 @@
+// @ts-check
 /**
  * From https://github.com/git/git/blob/master/Documentation/technical/index-format.txt
  *

@@ -1,3 +1,4 @@
+// @ts-check
 /**
  * @typedef {Object} GitProgressEvent
  * @property {string} phase
@@ -26,7 +27,7 @@
  * @typedef {Object} GitHttpResponse
  * @property {string} url - The final URL that was fetched after any redirects
  * @property {string} [method] - The HTTP method that was used
- * @property {Object<string, string>} [headers] - HTTP response headers
+ * @property {Object<string, string>} headers - HTTP response headers
  * @property {AsyncIterableIterator<Uint8Array>} [body] - An async iterator of Uint8Arrays that make up the body of the response
  * @property {number} statusCode - The HTTP status code
  * @property {string} statusMessage - The HTTP status message

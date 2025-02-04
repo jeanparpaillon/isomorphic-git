@@ -1,11 +1,13 @@
 // @ts-check
-import '../typedefs.js'
+import * as types from '../typedefs.js'
 
+import { FileSystem } from '../models/FileSystem.js'
 import { TREE } from '../commands/TREE.js'
 import { _walk } from '../commands/walk.js'
 import { MergeConflictError } from '../errors/MergeConflictError.js'
 import { MergeNotSupportedError } from '../errors/MergeNotSupportedError.js'
 import { GitTree } from '../models/GitTree.js'
+import { GitIndex } from '../models/GitIndex.js'
 import { _writeObject as writeObject } from '../storage/writeObject.js'
 
 import { basename } from './basename.js'
@@ -17,10 +19,11 @@ import { modified } from './modified.js'
  * Create a merged tree
  *
  * @param {Object} args
- * @param {import('../models/FileSystem.js').FileSystem} args.fs
+ * @param {FileSystem} args.fs
  * @param {object} args.cache
- * @param {string} [args.dir] - The [working tree](dir-vs-gitdir.md) directory path
+ * @param {string} args.dir - The [working tree](dir-vs-gitdir.md) directory path
  * @param {string} [args.gitdir=join(dir,'.git')] - [required] The [git directory](dir-vs-gitdir.md) path
+ * @param {GitIndex} args.index
  * @param {string} args.ourOid - The SHA-1 object id of our tree
  * @param {string} args.baseOid - The SHA-1 object id of the base tree
  * @param {string} args.theirOid - The SHA-1 object id of their tree
@@ -29,7 +32,7 @@ import { modified } from './modified.js'
  * @param {string} [args.theirName='theirs'] - The name to use in conflicted files for their hunks
  * @param {boolean} [args.dryRun=false]
  * @param {boolean} [args.abortOnConflict=false]
- * @param {MergeDriverCallback} [args.mergeDriver]
+ * @param {types.MergeDriverCallback} [args.mergeDriver]
  *
  * @returns {Promise<string>} - The SHA-1 object id of the merged tree
  *
@@ -260,7 +263,7 @@ export async function mergeTree({
         },
       })
     }
-    return new MergeConflictError(
+    throw new MergeConflictError(
       unmergedFiles,
       bothModified,
       deleteByUs,
@@ -274,17 +277,17 @@ export async function mergeTree({
 /**
  *
  * @param {Object} args
- * @param {import('../models/FileSystem').FileSystem} args.fs
+ * @param {FileSystem} args.fs
  * @param {string} args.gitdir
  * @param {string} args.path
- * @param {WalkerEntry} args.ours
- * @param {WalkerEntry} args.base
- * @param {WalkerEntry} args.theirs
- * @param {string} [args.ourName]
- * @param {string} [args.baseName]
- * @param {string} [args.theirName]
+ * @param {types.WalkerEntry} args.ours
+ * @param {types.WalkerEntry} args.base
+ * @param {types.WalkerEntry} args.theirs
+ * @param {string} args.ourName
+ * @param {string} args.baseName
+ * @param {string} args.theirName
  * @param {boolean} [args.dryRun = false]
- * @param {MergeDriverCallback} [args.mergeDriver]
+ * @param {types.MergeDriverCallback} [args.mergeDriver]
  *
  */
 async function mergeBlobs({
@@ -328,9 +331,9 @@ async function mergeBlobs({
     }
   }
   // if both sides made changes do a merge
-  const ourContent = Buffer.from(await ours.content()).toString('utf8')
-  const baseContent = Buffer.from(await base.content()).toString('utf8')
-  const theirContent = Buffer.from(await theirs.content()).toString('utf8')
+  const ourContent = await resolveContent(ours)
+  const baseContent = await resolveContent(base)
+  const theirContent = await resolveContent(theirs)
   const { mergedText, cleanMerge } = await mergeDriver({
     branches: [baseName, ourName, theirName],
     contents: [baseContent, ourContent, theirContent],
@@ -345,4 +348,15 @@ async function mergeBlobs({
   })
 
   return { cleanMerge, mergeResult: { mode, path, oid, type } }
+}
+
+/**
+ * 
+ * @param {types.WalkerEntry} tree 
+ * 
+ * @returns { Promise<string> }
+ */
+async function resolveContent(tree) {
+  const content = await tree.content()
+  return content ? Buffer.from(content).toString('utf8') : ''
 }

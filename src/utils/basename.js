@@ -1,3 +1,4 @@
+// @ts-check
 export function basename(path) {
   const last = Math.max(path.lastIndexOf('/'), path.lastIndexOf('\\'))
   if (last > -1) {

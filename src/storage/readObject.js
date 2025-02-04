@@ -1,3 +1,4 @@
+// @ts-check
 import { InternalError } from '../errors/InternalError.js'
 import { NotFoundError } from '../errors/NotFoundError.js'
 import { GitObject } from '../models/GitObject.js'
@@ -30,7 +31,7 @@ export async function _readObject({
   // Note: I think the canonical git implementation must do this too because
   // `git cat-file -t 4b825dc642cb6eb9a060e54bf8d69288fbee4904` prints "tree" even in empty repos.
   if (oid === '4b825dc642cb6eb9a060e54bf8d69288fbee4904') {
-    result = { format: 'wrapped', object: Buffer.from(`tree 0\x00`) }
+    result = { format: 'wrapped', object: Buffer.from(`tree 0\x00`), type: null }
   }
   // Look for it in the loose object directory.
   if (!result) {

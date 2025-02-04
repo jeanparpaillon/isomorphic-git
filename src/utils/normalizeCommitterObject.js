@@ -1,3 +1,6 @@
+// @ts-check
+import * as types from '../typedefs.js'
+import { FileSystem } from '../models/FileSystem.js'
 import { _getConfig } from '../commands/getConfig.js'
 
 import { assignDefined } from './assignDefined.js'
@@ -9,13 +12,13 @@ import { assignDefined } from './assignDefined.js'
  * -> (4) Config and current date/time
  *
  * @param {Object} args
- * @param {FsClient} args.fs - a file system implementation
- * @param {string} [args.gitdir] - The [git directory](dir-vs-gitdir.md) path
+ * @param {FileSystem} args.fs - a file system implementation
+ * @param {string} args.gitdir - The [git directory](dir-vs-gitdir.md) path
  * @param {Object} [args.author] - The author object.
  * @param {Object} [args.committer] - The committer object.
- * @param {CommitObject} [args.commit] - A commit object.
+ * @param {types.CommitObject} [args.commit] - A commit object.
  *
- * @returns {Promise<void | {name: string, email: string, timestamp: number, timezoneOffset: number }>}
+ * @returns {Promise<undefined | {name: string, email: string, timestamp: number, timezoneOffset: number }>}
  */
 export async function normalizeCommitterObject({
   fs,

@@ -1,3 +1,4 @@
+// @ts-check
 import ignore from 'ignore'
 
 import { basename } from '../utils/basename.js'

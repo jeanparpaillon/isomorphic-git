@@ -1,5 +1,5 @@
 // @ts-check
-import '../typedefs.js'
+import * as types from '../typedefs.js'
 
 import { STAGE } from '../commands/STAGE.js'
 import { TREE } from '../commands/TREE.js'
@@ -21,17 +21,17 @@ import { worthWalking } from '../utils/worthWalking.js'
  * @param {import('../models/FileSystem.js').FileSystem} args.fs
  * @param {any} args.cache
  * @param {ProgressCallback} [args.onProgress]
- * @param {PostCheckoutCallback} [args.onPostCheckout]
+ * @param {types.PostCheckoutCallback} [args.onPostCheckout]
  * @param {string} args.dir
  * @param {string} args.gitdir
  * @param {string} args.ref
  * @param {string[]} [args.filepaths]
- * @param {string} args.remote
+ * @param {string} [args.remote]
  * @param {boolean} args.noCheckout
  * @param {boolean} [args.noUpdateHead]
  * @param {boolean} [args.dryRun]
  * @param {boolean} [args.force]
- * @param {boolean} [args.track]
+ * @param {boolean} [args.track = true]
  *
  * @returns {Promise<void>} Resolves successfully when filesystem operations are complete
  *
@@ -53,7 +53,7 @@ export async function _checkout({
   track = true,
 }) {
   // oldOid is defined only if onPostCheckout hook is attached
-  let oldOid
+  let oldOid = ''
   if (onPostCheckout) {
     try {
       oldOid = await GitRefManager.resolve({ fs, gitdir, ref: 'HEAD' })

@@ -1,3 +1,4 @@
+// @ts-check
 import { GitRefSpec } from './GitRefSpec.js'
 
 export class GitRefSpecSet {

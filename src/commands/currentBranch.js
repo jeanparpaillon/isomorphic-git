@@ -1,6 +1,4 @@
 // @ts-check
-import '../typedefs.js'
-
 import { GitRefManager } from '../managers/GitRefManager.js'
 import { abbreviateRef } from '../utils/abbreviateRef.js'
 
@@ -11,7 +9,7 @@ import { abbreviateRef } from '../utils/abbreviateRef.js'
  * @param {boolean} [args.fullname = false] - Return the full path (e.g. "refs/heads/main") instead of the abbreviated form.
  * @param {boolean} [args.test = false] - If the current branch doesn't actually exist (such as right after git init) then return `undefined`.
  *
- * @returns {Promise<string|void>} The name of the current branch or undefined if the HEAD is detached.
+ * @returns {Promise<string|undefined>} The name of the current branch or undefined if the HEAD is detached.
  *
  */
 export async function _currentBranch({

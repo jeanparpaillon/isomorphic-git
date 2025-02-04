@@ -1,4 +1,5 @@
-import '../typedefs.js'
+// @ts-check
+import * as types from '../typedefs.js'
 
 import { HttpError } from '../errors/HttpError.js'
 import { SmartHttpError } from '../errors/SmartHttpError.js'
@@ -30,7 +31,7 @@ const updateHeaders = (headers, auth) => {
 /**
  * @param {GitHttpResponse} res
  *
- * @returns {{ preview: string, response: string, data: Buffer }}
+ * @returns {Promise<{ preview: string, response: string, data: Buffer }>}
  */
 const stringifyBody = async res => {
   try {
@@ -41,7 +42,7 @@ const stringifyBody = async res => {
       response.length < 256 ? response : response.slice(0, 256) + '...'
     return { preview, response, data }
   } catch (e) {
-    return {}
+    return { preview: '', response: '', data: Buffer.from('') }
   }
 }
 
@@ -54,9 +55,9 @@ export class GitRemoteHTTP {
    * @param {Object} args
    * @param {HttpClient} args.http
    * @param {ProgressCallback} [args.onProgress]
-   * @param {AuthCallback} [args.onAuth]
-   * @param {AuthFailureCallback} [args.onAuthFailure]
-   * @param {AuthSuccessCallback} [args.onAuthSuccess]
+   * @param {types.AuthCallback} [args.onAuth]
+   * @param {types.AuthFailureCallback} [args.onAuthFailure]
+   * @param {types.AuthSuccessCallback} [args.onAuthSuccess]
    * @param {string} [args.corsProxy]
    * @param {string} args.service
    * @param {string} args.url
@@ -75,26 +76,28 @@ export class GitRemoteHTTP {
     headers,
     protocolVersion,
   }) {
-    let { url, auth } = extractAuthFromUrl(_origUrl)
+    let { url, creds } = extractAuthFromUrl(_origUrl)
     const proxifiedURL = corsProxy ? corsProxify(corsProxy, url) : url
-    if (auth.username || auth.password) {
-      headers.Authorization = calculateBasicAuthHeader(auth)
+    if (creds.username || creds.password) {
+      headers.Authorization = calculateBasicAuthHeader(creds)
     }
     if (protocolVersion === 2) {
       headers['Git-Protocol'] = 'version=2'
     }
 
-    let res
-    let tryAgain
+
+    let res = await http.request({
+      onProgress,
+      method: 'GET',
+      url: `${proxifiedURL}/info/refs?service=${service}`,
+      headers,
+    })
+
+    let tryAgain = false
+    let auth
     let providedAuthBefore = false
     do {
-      res = await http.request({
-        onProgress,
-        method: 'GET',
-        url: `${proxifiedURL}/info/refs?service=${service}`,
-        headers,
-      })
-
+      
       // the default loop behavior
       tryAgain = false
 
@@ -108,7 +111,7 @@ export class GitRemoteHTTP {
           // Acquire credentials and try again
           // TODO: read `useHttpPath` value from git config and pass along?
           auth = await getAuth(url, {
-            ...auth,
+            ...creds,
             headers: { ...headers },
           })
           if (auth && auth.cancel) {
@@ -124,7 +127,16 @@ export class GitRemoteHTTP {
         providedAuthBefore &&
         onAuthSuccess
       ) {
-        await onAuthSuccess(url, auth)
+        await onAuthSuccess(url, creds)
+      }
+
+      if (tryAgain) {
+        res = await http.request({
+          onProgress,
+          method: 'GET',
+          url: `${proxifiedURL}/info/refs?service=${service}`,
+          headers,
+        })
       }
     } while (tryAgain)
 
@@ -163,7 +175,7 @@ export class GitRemoteHTTP {
    * @param {string} [args.corsProxy]
    * @param {string} args.service
    * @param {string} args.url
-   * @param {Object<string, string>} [args.headers]
+   * @param {Object<string, string>} [args.headers = {}]
    * @param {any} args.body
    * @param {any} args.auth
    */
@@ -175,7 +187,7 @@ export class GitRemoteHTTP {
     url,
     auth,
     body,
-    headers,
+    headers = {},
   }) {
     // We already have the "correct" auth value at this point, but
     // we need to strip out the username/password from the URL yet again.
@@ -196,7 +208,7 @@ export class GitRemoteHTTP {
       headers,
     })
     if (res.statusCode !== 200) {
-      const { response } = stringifyBody(res)
+      const { response } = await stringifyBody(res)
       throw new HttpError(res.statusCode, res.statusMessage, response)
     }
     return res

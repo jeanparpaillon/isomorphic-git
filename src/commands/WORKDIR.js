@@ -1,11 +1,11 @@
 // @ts-check
-import '../typedefs.js'
+import * as types from '../typedefs.js'
 
 import { GitWalkerFs } from '../models/GitWalkerFs.js'
 import { GitWalkSymbol } from '../utils/symbols.js'
 
 /**
- * @returns {Walker}
+ * @returns {types.Walker}
  */
 export function WORKDIR() {
   const o = Object.create(null)

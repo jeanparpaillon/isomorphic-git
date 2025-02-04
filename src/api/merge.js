@@ -1,5 +1,5 @@
 // @ts-check
-import '../typedefs.js'
+import * as types from '../typedefs.js'
 
 import { _merge } from '../commands/merge.js'
 import { MissingNameError } from '../errors/MissingNameError.js'
@@ -81,9 +81,9 @@ import { normalizeCommitterObject } from '../utils/normalizeCommitterObject.js'
  * ```
  *
  * @param {object} args
- * @param {FsClient} args.fs - a file system client
- * @param {SignCallback} [args.onSign] - a PGP signing implementation
- * @param {string} [args.dir] - The [working tree](dir-vs-gitdir.md) directory path
+ * @param {types.FsClient} args.fs - a file system client
+ * @param {types.SignCallback} [args.onSign] - a PGP signing implementation
+ * @param {string} args.dir - The [working tree](dir-vs-gitdir.md) directory path
  * @param {string} [args.gitdir=join(dir,'.git')] - [required] The [git directory](dir-vs-gitdir.md) path
  * @param {string} [args.ours] - The branch receiving the merge. If undefined, defaults to the current branch.
  * @param {string} args.theirs - The branch to be merged
@@ -93,19 +93,11 @@ import { normalizeCommitterObject } from '../utils/normalizeCommitterObject.js'
  * @param {boolean} [args.noUpdateBranch = false] - If true, does not update the branch pointer after creating the commit.
  * @param {boolean} [args.abortOnConflict = true] - If true, merges with conflicts will not update the worktree or index.
  * @param {string} [args.message] - Overrides the default auto-generated merge commit message
- * @param {Object} [args.author] - passed to [commit](commit.md) when creating a merge commit
- * @param {string} [args.author.name] - Default is `user.name` config.
- * @param {string} [args.author.email] - Default is `user.email` config.
- * @param {number} [args.author.timestamp=Math.floor(Date.now()/1000)] - Set the author timestamp field. This is the integer number of seconds since the Unix epoch (1970-01-01 00:00:00).
- * @param {number} [args.author.timezoneOffset] - Set the author timezone offset field. This is the difference, in minutes, from the current timezone to UTC. Default is `(new Date()).getTimezoneOffset()`.
- * @param {Object} [args.committer] - passed to [commit](commit.md) when creating a merge commit
- * @param {string} [args.committer.name] - Default is `user.name` config.
- * @param {string} [args.committer.email] - Default is `user.email` config.
- * @param {number} [args.committer.timestamp=Math.floor(Date.now()/1000)] - Set the committer timestamp field. This is the integer number of seconds since the Unix epoch (1970-01-01 00:00:00).
- * @param {number} [args.committer.timezoneOffset] - Set the committer timezone offset field. This is the difference, in minutes, from the current timezone to UTC. Default is `(new Date()).getTimezoneOffset()`.
+ * @param {types.PersonInfo} [args.author] - passed to [commit](commit.md) when creating a merge commit
+ * @param {types.PersonInfo} [args.committer] - passed to [commit](commit.md) when creating a merge commit
  * @param {string} [args.signingKey] - passed to [commit](commit.md) when creating a merge commit
  * @param {object} [args.cache] - a [cache](cache.md) object
- * @param {MergeDriverCallback} [args.mergeDriver] - a [merge driver](mergeDriver.md) implementation
+ * @param {types.MergeDriverCallback} [args.mergeDriver] - a [merge driver](mergeDriver.md) implementation
  *
  * @returns {Promise<MergeResult>} Resolves to a description of the merge operation
  * @see MergeResult

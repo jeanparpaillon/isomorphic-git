@@ -1,3 +1,4 @@
+// @ts-check
 // @see https://git-scm.com/docs/git-rev-parse.html#_specifying_revisions
 const abbreviateRx = new RegExp('^refs/(heads/|tags/|remotes/)?(.*)')
 

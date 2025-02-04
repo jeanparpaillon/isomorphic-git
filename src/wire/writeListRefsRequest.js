@@ -1,3 +1,4 @@
+// @ts-check
 import { GitPktLine } from '../models/GitPktLine.js'
 import { pkg } from '../utils/pkg.js'
 
@@ -6,7 +7,7 @@ import { pkg } from '../utils/pkg.js'
  * @param {string} [args.prefix] - Only list refs that start with this prefix
  * @param {boolean} [args.symrefs = false] - Include symbolic ref targets
  * @param {boolean} [args.peelTags = false] - Include peeled tags values
- * @returns {Uint8Array[]}
+ * @returns {Promise<Uint8Array[]>}
  */
 export async function writeListRefsRequest({ prefix, symrefs, peelTags }) {
   const packstream = []

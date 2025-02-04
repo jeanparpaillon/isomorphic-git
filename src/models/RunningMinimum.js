@@ -1,3 +1,4 @@
+// @ts-check
 // This is convenient for computing unions/joins of sorted lists.
 export class RunningMinimum {
   constructor() {

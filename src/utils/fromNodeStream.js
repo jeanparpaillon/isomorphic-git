@@ -1,3 +1,4 @@
+// @ts-check
 // Convert a Node stream to an Async Iterator
 export function fromNodeStream(stream) {
   // Use native async iteration if it's available.

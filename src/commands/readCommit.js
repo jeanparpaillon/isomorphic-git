@@ -1,5 +1,5 @@
 // @ts-check
-import '../typedefs.js'
+import * as types from '../typedefs.js'
 
 import { resolveCommit } from '../utils/resolveCommit.js'
 
@@ -10,7 +10,7 @@ import { resolveCommit } from '../utils/resolveCommit.js'
  * @param {string} args.gitdir
  * @param {string} args.oid
  *
- * @returns {Promise<ReadCommitResult>} Resolves successfully with a git commit object
+ * @returns {Promise<types.ReadCommitResult>} Resolves successfully with a git commit object
  * @see ReadCommitResult
  * @see CommitObject
  *

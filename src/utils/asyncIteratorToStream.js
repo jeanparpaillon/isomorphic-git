@@ -1,3 +1,4 @@
+// @ts-check
 import { forAwait } from './forAwait.js'
 
 export function asyncIteratorToStream(iter) {

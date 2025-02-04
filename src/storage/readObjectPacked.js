@@ -1,3 +1,4 @@
+// @ts-check
 import { InternalError } from '../errors/InternalError.js'
 import { readPackIndex } from '../storage/readPackIndex.js'
 import { join } from '../utils/join.js'
@@ -31,6 +32,7 @@ export async function readObjectPacked({
         p.pack = fs.read(packFile)
       }
       const result = await p.read({ oid, getExternalRefDelta })
+      result.type = null
       result.format = 'content'
       result.source = `objects/pack/${filename.replace(/idx$/, 'pack')}`
       return result

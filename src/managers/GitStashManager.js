@@ -1,3 +1,4 @@
+// @ts-check
 import { _readCommit } from '../commands/readCommit.js'
 import { _writeCommit } from '../commands/writeCommit.js'
 import { InvalidRefNameError } from '../errors/InvalidRefNameError.js'
@@ -9,14 +10,17 @@ import { acquireLock } from '../utils/walkerToTreeEntryMap.js'
 
 import { GitRefManager } from './GitRefManager.js'
 
+/**
+ * @class
+ * @constructor
+ * @public
+ */
 export class GitStashManager {
   constructor({ fs, dir, gitdir = join(dir, '.git') }) {
-    Object.assign(this, {
-      fs,
-      dir,
-      gitdir,
-      _author: null,
-    })
+    this.fs = fs
+    this.dir = dir
+    this.gitdir = gitdir
+    this._author = null
   }
 
   static get refStash() {

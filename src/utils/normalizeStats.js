@@ -1,3 +1,4 @@
+// @ts-check
 import { normalizeMode } from './normalizeMode.js'
 
 const MAX_UINT32 = 2 ** 32

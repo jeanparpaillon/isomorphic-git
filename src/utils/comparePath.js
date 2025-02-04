@@ -1,3 +1,4 @@
+// @ts-check
 import { compareStrings } from './compareStrings.js'
 
 export function comparePath(a, b) {

@@ -1,3 +1,4 @@
+// @ts-check
 export * from './AlreadyExistsError.js'
 export * from './AmbiguousError.js'
 // BaseError.js

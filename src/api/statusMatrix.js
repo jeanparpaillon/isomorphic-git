@@ -1,5 +1,5 @@
 // @ts-check
-import '../typedefs.js'
+import * as types from '../typedefs.js'
 
 import { STAGE } from '../commands/STAGE.js'
 import { TREE } from '../commands/TREE.js'
@@ -142,7 +142,7 @@ import { worthWalking } from '../utils/worthWalking.js'
  * | 1    | 2       | 3     | `MM`                            |
  *
  * @param {object} args
- * @param {FsClient} args.fs - a file system client
+ * @param {types.FsClient} args.fs - a file system client
  * @param {string} args.dir - The [working tree](dir-vs-gitdir.md) directory path
  * @param {string} [args.gitdir=join(dir, '.git')] - [required] The [git directory](dir-vs-gitdir.md) path
  * @param {string} [args.ref = 'HEAD'] - Optionally specify a different commit to compare against the workdir and stage instead of the HEAD
@@ -151,7 +151,7 @@ import { worthWalking } from '../utils/worthWalking.js'
  * @param {object} [args.cache] - a [cache](cache.md) object
  * @param {boolean} [args.ignored = false] - include ignored files in the result
  *
- * @returns {Promise<Array<StatusRow>>} Resolves with a status matrix, described below.
+ * @returns {Promise<Array<types.StatusRow>>} Resolves with a status matrix, described below.
  * @see StatusRow
  */
 export async function statusMatrix({

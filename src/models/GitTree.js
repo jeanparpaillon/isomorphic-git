@@ -1,3 +1,4 @@
+// @ts-check
 import { InternalError } from '../errors/InternalError.js'
 import { UnsafeFilepathError } from '../errors/UnsafeFilepathError.js'
 import { comparePath } from '../utils/comparePath.js'

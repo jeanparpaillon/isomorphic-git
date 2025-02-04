@@ -1,3 +1,4 @@
+// @ts-check
 export function parseAuthor(author) {
   const [, name, email, timestamp, offset] = author.match(
     /^(.*) <(.*)> (.*) (.*)$/

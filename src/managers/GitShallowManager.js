@@ -1,3 +1,4 @@
+// @ts-check
 import AsyncLock from 'async-lock'
 
 import { join } from '../utils/join.js'

@@ -1,3 +1,4 @@
+// @ts-check
 import * as Errors from './errors/index.js'
 export { Errors }
 

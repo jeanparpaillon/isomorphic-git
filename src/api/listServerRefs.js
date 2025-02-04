@@ -1,5 +1,5 @@
 // @ts-check
-import '../typedefs.js'
+import * as types from '../typedefs.js'
 
 import { GitRemoteHTTP } from '../managers/GitRemoteHTTP.js'
 import { assertParameter } from '../utils/assertParameter.js'
@@ -44,9 +44,9 @@ import { writeListRefsRequest } from '../wire/writeListRefsRequest.js'
  *
  * @param {object} args
  * @param {HttpClient} args.http - an HTTP client
- * @param {AuthCallback} [args.onAuth] - optional auth fill callback
- * @param {AuthFailureCallback} [args.onAuthFailure] - optional auth rejected callback
- * @param {AuthSuccessCallback} [args.onAuthSuccess] - optional auth approved callback
+ * @param {types.AuthCallback} [args.onAuth] - optional auth fill callback
+ * @param {types.AuthFailureCallback} [args.onAuthFailure] - optional auth rejected callback
+ * @param {types.AuthSuccessCallback} [args.onAuthSuccess] - optional auth approved callback
  * @param {string} args.url - The URL of the remote repository. Will be gotten from gitconfig if absent.
  * @param {string} [args.corsProxy] - Optional [CORS proxy](https://www.npmjs.com/%40isomorphic-git/cors-proxy). Overrides value in repo config.
  * @param {boolean} [args.forPush = false] - By default, the command queries the 'fetch' capabilities. If true, it will ask for the 'push' capabilities.
@@ -56,7 +56,7 @@ import { writeListRefsRequest } from '../wire/writeListRefsRequest.js'
  * @param {boolean} [args.symrefs = false] - Include symbolic ref targets
  * @param {boolean} [args.peelTags = false] - Include annotated tag peeled targets
  *
- * @returns {Promise<ServerRef[]>} Resolves successfully with an array of ServerRef objects
+ * @returns {Promise<types.ServerRef[]>} Resolves successfully with an array of ServerRef objects
  * @see ServerRef
  *
  * @example
@@ -113,8 +113,8 @@ export async function listServerRefs({
   forPush = false,
   protocolVersion = 2,
   prefix,
-  symrefs,
-  peelTags,
+  symrefs = false,
+  peelTags = false,
 }) {
   try {
     assertParameter('http', http)

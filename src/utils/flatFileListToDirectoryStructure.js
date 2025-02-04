@@ -1,3 +1,4 @@
+// @ts-check
 import { basename } from '../utils/basename.js'
 import { dirname } from '../utils/dirname.js'
 

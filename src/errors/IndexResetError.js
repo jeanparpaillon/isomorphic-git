@@ -1,8 +1,9 @@
+// @ts-check
 import { BaseError } from './BaseError.js'
 
 export class IndexResetError extends BaseError {
   /**
-   * @param {Array<string>} filepaths
+   * @param {Array<string>} filepath
    */
   constructor(filepath) {
     super(

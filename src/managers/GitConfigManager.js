@@ -1,3 +1,4 @@
+// @ts-check
 import { GitConfig } from '../models/GitConfig.js'
 
 export class GitConfigManager {

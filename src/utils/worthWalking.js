@@ -1,3 +1,4 @@
+// @ts-check
 export const worthWalking = (filepath, root) => {
   if (filepath === '.' || root == null || root.length === 0 || root === '.') {
     return true

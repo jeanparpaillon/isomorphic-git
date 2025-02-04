@@ -1,3 +1,4 @@
+// @ts-check
 // My version of git-list-pack - roughly 15x faster than the original
 // It's used slightly differently - instead of returning a through stream it wraps a stream.
 // (I tried to make it API identical, but that ended up being 2x slower than this version.)
@@ -45,6 +46,8 @@ export async function listpack(stream, onData) {
 
         // Backtrack parser to where deflated data ends
         await reader.undo()
+        // .strm exists in inflator
+        // @ts-ignore
         await reader.read(chunk.length - inflator.strm.avail_in)
         const end = reader.tell()
         await onData({

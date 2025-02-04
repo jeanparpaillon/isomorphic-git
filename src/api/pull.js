@@ -1,5 +1,5 @@
 // @ts-check
-import '../typedefs.js'
+import * as types from '../typedefs.js'
 
 import { _pull } from '../commands/pull.js'
 import { MissingNameError } from '../errors/MissingNameError.js'
@@ -13,14 +13,14 @@ import { normalizeCommitterObject } from '../utils/normalizeCommitterObject.js'
  * Fetch and merge commits from a remote repository
  *
  * @param {object} args
- * @param {FsClient} args.fs - a file system client
+ * @param {types.FsClient} args.fs - a file system client
  * @param {HttpClient} args.http - an HTTP client
  * @param {ProgressCallback} [args.onProgress] - optional progress event callback
- * @param {MessageCallback} [args.onMessage] - optional message event callback
- * @param {AuthCallback} [args.onAuth] - optional auth fill callback
- * @param {AuthFailureCallback} [args.onAuthFailure] - optional auth rejected callback
- * @param {AuthSuccessCallback} [args.onAuthSuccess] - optional auth approved callback
- * @param {string} args.dir] - The [working tree](dir-vs-gitdir.md) directory path
+ * @param {types.MessageCallback} [args.onMessage] - optional message event callback
+ * @param {types.AuthCallback} [args.onAuth] - optional auth fill callback
+ * @param {types.AuthFailureCallback} [args.onAuthFailure] - optional auth rejected callback
+ * @param {types.AuthSuccessCallback} [args.onAuthSuccess] - optional auth approved callback
+ * @param {string} args.dir - The [working tree](dir-vs-gitdir.md) directory path
  * @param {string} [args.gitdir=join(dir,'.git')] - [required] The [git directory](dir-vs-gitdir.md) path
  * @param {string} [args.ref] - Which branch to merge into. By default this is the currently checked out branch.
  * @param {string} [args.url] - (Added in 1.1.0) The URL of the remote repository. The default is the value set in the git config for that remote.
@@ -33,16 +33,8 @@ import { normalizeCommitterObject } from '../utils/normalizeCommitterObject.js'
  * @param {boolean} [args.fastForward = true] -  If false, only create merge commits.
  * @param {boolean} [args.fastForwardOnly = false] - Only perform simple fast-forward merges. (Don't create merge commits.)
  * @param {Object<string, string>} [args.headers] - Additional headers to include in HTTP requests, similar to git's `extraHeader` config
- * @param {Object} [args.author] - The details about the author.
- * @param {string} [args.author.name] - Default is `user.name` config.
- * @param {string} [args.author.email] - Default is `user.email` config.
- * @param {number} [args.author.timestamp=Math.floor(Date.now()/1000)] - Set the author timestamp field. This is the integer number of seconds since the Unix epoch (1970-01-01 00:00:00).
- * @param {number} [args.author.timezoneOffset] - Set the author timezone offset field. This is the difference, in minutes, from the current timezone to UTC. Default is `(new Date()).getTimezoneOffset()`.
- * @param {Object} [args.committer = author] - The details about the commit committer, in the same format as the author parameter. If not specified, the author details are used.
- * @param {string} [args.committer.name] - Default is `user.name` config.
- * @param {string} [args.committer.email] - Default is `user.email` config.
- * @param {number} [args.committer.timestamp=Math.floor(Date.now()/1000)] - Set the committer timestamp field. This is the integer number of seconds since the Unix epoch (1970-01-01 00:00:00).
- * @param {number} [args.committer.timezoneOffset] - Set the committer timezone offset field. This is the difference, in minutes, from the current timezone to UTC. Default is `(new Date()).getTimezoneOffset()`.
+ * @param {types.PersonInfo} [args.author] - The details about the author.
+ * @param {types.PersonInfo} [args.committer = author] - The details about the commit committer, in the same format as the author parameter. If not specified, the author details are used.
  * @param {string} [args.signingKey] - passed to [commit](commit.md) when creating a merge commit
  * @param {object} [args.cache] - a [cache](cache.md) object
  *

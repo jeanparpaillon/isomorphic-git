@@ -1,3 +1,4 @@
+// @ts-check
 import { GitPackIndex } from '../models/GitPackIndex.js'
 
 const PackfileCache = Symbol('PackfileCache')
@@ -18,8 +19,8 @@ export function readPackIndex({
   cache,
   filename,
   getExternalRefDelta,
-  emitter,
-  emitterPrefix,
+  emitter = undefined,
+  emitterPrefix = undefined,
 }) {
   // Try to get the packfile index from the in-memory cache
   if (!cache[PackfileCache]) cache[PackfileCache] = new Map()

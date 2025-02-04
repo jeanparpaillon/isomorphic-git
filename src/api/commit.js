@@ -1,5 +1,5 @@
 // @ts-check
-import '../typedefs.js'
+import * as types from '../typedefs.js'
 
 import { _commit } from '../commands/commit.js'
 import { FileSystem } from '../models/FileSystem.js'
@@ -9,21 +9,13 @@ import { join } from '../utils/join.js'
  * Create a new commit
  *
  * @param {Object} args
- * @param {FsClient} args.fs - a file system implementation
- * @param {SignCallback} [args.onSign] - a PGP signing implementation
- * @param {string} [args.dir] - The [working tree](dir-vs-gitdir.md) directory path
+ * @param {types.FsClient} args.fs - a file system implementation
+ * @param {types.SignCallback} [args.onSign] - a PGP signing implementation
+ * @param {string} args.dir - The [working tree](dir-vs-gitdir.md) directory path
  * @param {string} [args.gitdir=join(dir,'.git')] - [required] The [git directory](dir-vs-gitdir.md) path
  * @param {string} [args.message] - The commit message to use. Required, unless `amend === true`
- * @param {Object} [args.author] - The details about the author.
- * @param {string} [args.author.name] - Default is `user.name` config.
- * @param {string} [args.author.email] - Default is `user.email` config.
- * @param {number} [args.author.timestamp=Math.floor(Date.now()/1000)] - Set the author timestamp field. This is the integer number of seconds since the Unix epoch (1970-01-01 00:00:00).
- * @param {number} [args.author.timezoneOffset] - Set the author timezone offset field. This is the difference, in minutes, from the current timezone to UTC. Default is `(new Date()).getTimezoneOffset()`.
- * @param {Object} [args.committer = author] - The details about the commit committer, in the same format as the author parameter. If not specified, the author details are used.
- * @param {string} [args.committer.name] - Default is `user.name` config.
- * @param {string} [args.committer.email] - Default is `user.email` config.
- * @param {number} [args.committer.timestamp=Math.floor(Date.now()/1000)] - Set the committer timestamp field. This is the integer number of seconds since the Unix epoch (1970-01-01 00:00:00).
- * @param {number} [args.committer.timezoneOffset] - Set the committer timezone offset field. This is the difference, in minutes, from the current timezone to UTC. Default is `(new Date()).getTimezoneOffset()`.
+ * @param {types.PersonInfo} [args.author] - The details about the author.
+ * @param {types.PersonInfo} [args.committer = author] - The details about the commit committer, in the same format as the author parameter. If not specified, the author details are used.
  * @param {string} [args.signingKey] - Sign the tag object using this private PGP key.
  * @param {boolean} [args.amend = false] - If true, replaces the last commit pointed to by `ref` with a new commit.
  * @param {boolean} [args.dryRun = false] - If true, simulates making a commit so you can test whether it would succeed. Implies `noUpdateBranch`.

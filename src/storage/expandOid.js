@@ -1,3 +1,4 @@
+// @ts-check
 import { AmbiguousError } from '../errors/AmbiguousError.js'
 import { NotFoundError } from '../errors/NotFoundError.js'
 import { expandOidLoose } from '../storage/expandOidLoose.js'

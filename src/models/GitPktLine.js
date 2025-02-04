@@ -1,3 +1,4 @@
+// @ts-check
 /**
 pkt-line Format
 ---------------

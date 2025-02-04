@@ -1,4 +1,6 @@
 // @ts-check
+import * as types from '../typedefs.js'
+
 import { _readTree } from '../commands/readTree.js'
 import { NotFoundError } from '../errors/NotFoundError.js'
 import { ObjectTypeError } from '../errors/ObjectTypeError.js'
@@ -35,13 +37,13 @@ import { join } from '../utils/join.js'
  * | `"*undeletemodified"` | file was deleted from the index, but is present with modifications in the working dir |
  *
  * @param {object} args
- * @param {FsClient} args.fs - a file system client
+ * @param {types.FsClient} args.fs - a file system client
  * @param {string} args.dir - The [working tree](dir-vs-gitdir.md) directory path
  * @param {string} [args.gitdir=join(dir, '.git')] - [required] The [git directory](dir-vs-gitdir.md) path
  * @param {string} args.filepath - The path to the file to query
  * @param {object} [args.cache] - a [cache](cache.md) object
  *
- * @returns {Promise<'ignored'|'unmodified'|'*modified'|'*deleted'|'*added'|'absent'|'modified'|'deleted'|'added'|'*unmodified'|'*absent'|'*undeleted'|'*undeletemodified'>} Resolves successfully with the file's git status
+ * @returns {Promise<'ignored'|'unmodified'|'*modified'|'*deleted'|'*added'|'absent'|'modified'|'deleted'|'added'|'*unmodified'|'*absent'|'*undeleted'|'*undeletemodified'|undefined>} Resolves successfully with the file's git status
  *
  * @example
  * let status = await git.status({ fs, dir: '/tutorial', filepath: 'README.md' })
@@ -201,12 +203,12 @@ async function getHeadTree({ fs, cache, gitdir }) {
   let oid
   try {
     oid = await GitRefManager.resolve({ fs, gitdir, ref: 'HEAD' })
+    const { tree } = await _readTree({ fs, cache, gitdir, oid })
+    return tree
   } catch (e) {
     // Handle fresh branches with no commits
     if (e instanceof NotFoundError) {
       return []
     }
   }
-  const { tree } = await _readTree({ fs, cache, gitdir, oid })
-  return tree
 }

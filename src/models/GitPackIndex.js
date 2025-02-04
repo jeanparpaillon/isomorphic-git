@@ -41,6 +41,14 @@ function otherVarIntDecode(reader, startWith) {
   return result
 }
 
+/**
+ * @class GitPackIndex
+ * @property {Array<string>} hashes
+ * @property {Object<string, number>} crcs 
+ * @property {Map<string, number>} offsets
+ * @property {string} packfileSha
+ * @property {Function} getExternalRefDelta
+ */
 export class GitPackIndex {
   constructor(stuff) {
     Object.assign(this, stuff)

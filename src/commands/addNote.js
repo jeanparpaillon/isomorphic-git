@@ -1,6 +1,7 @@
 // @ts-check
-import '../typedefs.js'
+import * as types from '../typedefs.js'
 
+import { FileSystem } from '../models/FileSystem.js'
 import { _commit } from '../commands/commit.js'
 import { _readTree } from '../commands/readTree.js'
 import { _writeTree } from '../commands/writeTree.js'
@@ -11,9 +12,9 @@ import { _writeObject as writeObject } from '../storage/writeObject.js'
 
 /**
  * @param {object} args
- * @param {import('../models/FileSystem.js').FileSystem} args.fs
+ * @param {FileSystem} args.fs
  * @param {object} args.cache
- * @param {SignCallback} [args.onSign]
+ * @param {types.SignCallback} [args.onSign]
  * @param {string} args.gitdir
  * @param {string} args.ref
  * @param {string} args.oid
@@ -48,7 +49,7 @@ export async function _addNote({
   signingKey,
 }) {
   // Get the current note commit
-  let parent
+  let parent = ''
   try {
     parent = await GitRefManager.resolve({ gitdir, fs, ref })
   } catch (err) {
@@ -105,7 +106,7 @@ export async function _addNote({
     gitdir,
     ref,
     tree: treeOid,
-    parent: parent && [parent],
+    parent: [parent],
     message: `Note added by 'isomorphic-git addNote'\n`,
     author,
     committer,

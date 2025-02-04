@@ -1,10 +1,10 @@
+// @ts-check
 import { BaseError } from './BaseError.js'
 
 export class InvalidRefNameError extends BaseError {
   /**
    * @param {string} ref
    * @param {string} suggestion
-   * @param {boolean} canForce
    */
   constructor(ref, suggestion) {
     super(

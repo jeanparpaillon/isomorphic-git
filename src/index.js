@@ -1,5 +1,4 @@
-import './typedefs.js'
-
+// @ts-check
 import { STAGE } from './api/STAGE.js'
 import { TREE } from './api/TREE.js'
 import { WORKDIR } from './api/WORKDIR.js'

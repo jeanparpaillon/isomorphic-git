@@ -1,3 +1,4 @@
+// @ts-check
 import { InternalError } from '../errors/InternalError.js'
 
 export async function writeObjectLoose({ fs, gitdir, object, format, oid }) {

@@ -1,3 +1,4 @@
+// @ts-check
 import { ObjectTypeError } from '../errors/index.js'
 import { GitAnnotatedTag } from '../models/GitAnnotatedTag.js'
 import { GitCommit } from '../models/GitCommit.js'
@@ -17,6 +18,7 @@ export async function resolveTree({ fs, cache, gitdir, oid }) {
   }
   // Resolve commits to trees
   if (type === 'commit') {
+    // @ts-ignore
     oid = GitCommit.from(object).parse().tree
     return resolveTree({ fs, cache, gitdir, oid })
   }

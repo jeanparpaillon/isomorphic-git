@@ -1,3 +1,4 @@
+// @ts-check
 import { RunningMinimum } from '../models/RunningMinimum.js'
 
 // Take an array of length N of

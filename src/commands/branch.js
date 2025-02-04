@@ -1,8 +1,7 @@
 // @ts-check
-import '../typedefs.js'
-
 import cleanGitRef from 'clean-git-ref'
 
+import { FileSystem } from '../models/FileSystem.js'
 import { AlreadyExistsError } from '../errors/AlreadyExistsError.js'
 import { InvalidRefNameError } from '../errors/InvalidRefNameError.js'
 import { GitRefManager } from '../managers/GitRefManager.js'
@@ -11,7 +10,7 @@ import { GitRefManager } from '../managers/GitRefManager.js'
  * Create a branch
  *
  * @param {object} args
- * @param {import('../models/FileSystem.js').FileSystem} args.fs
+ * @param {FileSystem} args.fs
  * @param {string} args.gitdir
  * @param {string} args.ref
  * @param {string} [args.object = 'HEAD']

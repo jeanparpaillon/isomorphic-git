@@ -1,5 +1,5 @@
 // @ts-check
-import '../typedefs.js'
+import * as types from '../typedefs.js'
 
 import { ObjectTypeError } from '../errors/ObjectTypeError.js'
 import { GitAnnotatedTag } from '../models/GitAnnotatedTag.js'
@@ -9,7 +9,7 @@ import { _readObject as readObject } from '../storage/readObject.js'
  *
  * @typedef {Object} ReadTagResult - The object returned has the following schema:
  * @property {string} oid - SHA-1 object id of this tag
- * @property {TagObject} tag - the parsed tag object
+ * @property {types.TagObject} tag - the parsed tag object
  * @property {string} payload - PGP signing payload
  */
 

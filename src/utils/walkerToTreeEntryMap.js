@@ -1,5 +1,7 @@
+// @ts-check
 import AsyncLock from 'async-lock'
 
+import { FileSystem } from '../models/FileSystem.js'
 import { STAGE } from '../commands/STAGE.js'
 import { TREE } from '../commands/TREE.js'
 import { WORKDIR } from '../commands/WORKDIR.js'
@@ -27,7 +29,16 @@ export async function acquireLock(ref, callback) {
   return lock.acquire(ref, callback)
 }
 
-// make sure filepath, blob type and blob object (from loose objects) plus oid are in sync and valid
+/**
+ * make sure filepath, blob type and blob object (from loose objects) plus oid are in sync and valid
+ * 
+ * @param {FileSystem} fs 
+ * @param {string} gitdir 
+ * @param {string} dir 
+ * @param {string} filepath 
+ * @param {string | null} oid 
+ * @returns 
+ */
 async function checkAndWriteBlob(fs, gitdir, dir, filepath, oid = null) {
   const currentFilepath = join(dir, filepath)
   const stats = await fs.lstat(currentFilepath)
@@ -41,7 +52,7 @@ async function checkAndWriteBlob(fs, gitdir, dir, filepath, oid = null) {
   const objContent = oid
     ? await readObjectLoose({ fs, gitdir, oid })
     : undefined
-  let retOid = objContent ? oid : undefined
+  let retOid = objContent ? oid : null
   if (!objContent) {
     await acquireLock({ fs, gitdir, currentFilepath }, async () => {
       const object = stats.isSymbolicLink()
@@ -170,6 +181,7 @@ export async function writeTreeChanges({
     dir,
     gitdir,
     trees,
+    // @ts-ignore
     map,
     reduce,
     iterate,

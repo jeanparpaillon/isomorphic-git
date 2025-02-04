@@ -1,5 +1,5 @@
 // @ts-check
-import '../typedefs.js'
+import * as types from '../typedefs.js'
 
 import { MultipleGitError } from '../errors/MultipleGitError.js'
 import { NotFoundError } from '../errors/NotFoundError.js'
@@ -16,7 +16,7 @@ import { posixifyPathBuffer } from '../utils/posixifyPathBuffer.js'
  * Add a file to the git index (aka staging area)
  *
  * @param {object} args
- * @param {FsClient} args.fs - a file system implementation
+ * @param {types.FsClient} args.fs - a file system implementation
  * @param {string} args.dir - The [working tree](dir-vs-gitdir.md) directory path
  * @param {string} [args.gitdir=join(dir, '.git')] - [required] The [git directory](dir-vs-gitdir.md) path
  * @param {string|string[]} args.filepath - The path to the file to add to the index
@@ -65,6 +65,18 @@ export async function add({
   }
 }
 
+/**
+ * 
+ * @param {Object} args 
+ * @param {string} args.dir
+ * @param {string} args.gitdir
+ * @param {FileSystem} args.fs
+ * @param {string|string[]} args.filepath
+ * @param {import('../models/GitIndex.js').GitIndex} args.index
+ * @param {boolean} args.force
+ * @param {boolean} args.parallel
+ * @returns 
+ */
 async function addToIndex({
   dir,
   gitdir,
@@ -141,8 +153,17 @@ async function addToIndex({
   }
 
   const fulfilledPromises = settledPromises
-    .filter(settle => settle.status === 'fulfilled' && settle.value)
-    .map(settle => settle.value)
+    .reduce(
+      /**
+       * 
+       * @param {any[]} acc 
+       * @param {PromiseSettledResult<any>} settle 
+       * @returns 
+       */
+      (acc, settle) => 
+        settle.status === 'fulfilled' && settle.value ? [...acc, settle.value] : acc,
+      []
+    )
 
   return fulfilledPromises
 }

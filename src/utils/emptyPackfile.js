@@ -1,3 +1,4 @@
+// @ts-check
 // TODO: make a function that just returns obCount. then emptyPackfile = () => sizePack(pack) === 0
 export function emptyPackfile(pack) {
   const pheader = '5041434b'

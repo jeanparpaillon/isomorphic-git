@@ -1,3 +1,4 @@
+// @ts-check
 import { UnknownTransportError } from '../errors/UnknownTransportError.js'
 import { UrlParseError } from '../errors/UrlParseError.js'
 import { translateSSHtoHTTP } from '../utils/translateSSHtoHTTP.js'

@@ -1,5 +1,5 @@
 // @ts-check
-import '../typedefs.js'
+import * as types from '../typedefs.js'
 
 import { _deleteBranch } from '../commands/deleteBranch.js'
 import { FileSystem } from '../models/FileSystem.js'
@@ -12,8 +12,8 @@ import { join } from '../utils/join.js'
  * > Note: This only deletes loose branches - it should be fixed in the future to delete packed branches as well.
  *
  * @param {Object} args
- * @param {FsClient} args.fs - a file system implementation
- * @param {string} [args.dir] - The [working tree](dir-vs-gitdir.md) directory path
+ * @param {types.FsClient} args.fs - a file system implementation
+ * @param {string} args.dir - The [working tree](dir-vs-gitdir.md) directory path
  * @param {string} [args.gitdir=join(dir,'.git')] - [required] The [git directory](dir-vs-gitdir.md) path
  * @param {string} args.ref - The branch to delete
  *

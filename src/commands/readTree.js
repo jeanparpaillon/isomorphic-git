@@ -1,5 +1,5 @@
 // @ts-check
-import '../typedefs.js'
+import * as types from '../typedefs.js'
 
 import { resolveFilepath } from '../utils/resolveFilepath.js'
 import { resolveTree } from '../utils/resolveTree.js'
@@ -8,7 +8,7 @@ import { resolveTree } from '../utils/resolveTree.js'
  *
  * @typedef {Object} ReadTreeResult - The object returned has the following schema:
  * @property {string} oid - SHA-1 object id of this tree
- * @property {TreeObject} tree - the parsed tree object
+ * @property {types.TreeObject} tree - the parsed tree object
  */
 
 /**

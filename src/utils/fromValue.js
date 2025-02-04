@@ -1,3 +1,4 @@
+// @ts-check
 // Convert a value to an Async Iterator
 // This will be easier with async generator functions.
 export function fromValue(value) {

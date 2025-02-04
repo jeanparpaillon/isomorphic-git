@@ -1,3 +1,4 @@
+// @ts-check
 export function translateSSHtoHTTP(url) {
   // handle "shorter scp-like syntax"
   url = url.replace(/^git@([^:]+):/, 'https://$1/')

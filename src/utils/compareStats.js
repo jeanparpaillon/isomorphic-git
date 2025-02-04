@@ -1,3 +1,4 @@
+// @ts-check
 import { normalizeStats } from './normalizeStats.js'
 
 export function compareStats(entry, stats, filemode = true, trustino = true) {

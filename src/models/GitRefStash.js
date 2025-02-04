@@ -1,3 +1,4 @@
+// @ts-check
 export class GitRefStash {
   // constructor removed
 

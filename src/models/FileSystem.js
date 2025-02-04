@@ -58,6 +58,21 @@ function bindFs(target, fs) {
 
 /**
  * This is just a collection of helper functions really. At least that's how it started.
+ * 
+ * @class
+ * @constructor
+ * @public
+ * @property {Object} _original_unwrapped_fs
+ * @property {Function} _readFile
+ * @property {Function} _writeFile
+ * @property {Function} _mkdir
+ * @property {Function} _rmdir
+ * @property {Function} _unlink
+ * @property {Function} _stat
+ * @property {Function} _lstat
+ * @property {Function} _readdir
+ * @property {Function} _readlink
+ * @property {Function} _symlink
  */
 export class FileSystem {
   constructor(fs) {

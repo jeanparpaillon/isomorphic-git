@@ -1,6 +1,7 @@
 // @ts-check
-import '../typedefs.js'
+import * as types from '../typedefs.js'
 
+import { FileSystem } from '../models/FileSystem.js'
 import { _currentBranch } from '../commands/currentBranch.js'
 import { MissingParameterError } from '../errors/MissingParameterError.js'
 import { RemoteCapabilityError } from '../errors/RemoteCapabilityError.js'
@@ -36,29 +37,29 @@ import { writeUploadPackRequest } from '../wire/writeUploadPackRequest.js'
 
 /**
  * @param {object} args
- * @param {import('../models/FileSystem.js').FileSystem} args.fs
+ * @param {FileSystem} args.fs
  * @param {any} args.cache
  * @param {HttpClient} args.http
  * @param {ProgressCallback} [args.onProgress]
- * @param {MessageCallback} [args.onMessage]
- * @param {AuthCallback} [args.onAuth]
- * @param {AuthFailureCallback} [args.onAuthFailure]
- * @param {AuthSuccessCallback} [args.onAuthSuccess]
+ * @param {types.MessageCallback} [args.onMessage]
+ * @param {types.AuthCallback} [args.onAuth]
+ * @param {types.AuthFailureCallback} [args.onAuthFailure]
+ * @param {types.AuthSuccessCallback} [args.onAuthSuccess]
  * @param {string} args.gitdir
- * @param {string|void} [args.url]
- * @param {string} [args.corsProxy]
+ * @param {string | void} [args.url]
+ * @param {string | undefined} [args.corsProxy = undefined]
  * @param {string} [args.ref]
  * @param {string} [args.remoteRef]
  * @param {string} [args.remote]
  * @param {boolean} [args.singleBranch = false]
  * @param {boolean} [args.tags = false]
- * @param {number} [args.depth]
- * @param {Date} [args.since]
+ * @param {number | null} [args.depth]
+ * @param {Date | null} [args.since]
  * @param {string[]} [args.exclude = []]
  * @param {boolean} [args.relative = false]
  * @param {Object<string, string>} [args.headers]
- * @param {boolean} [args.prune]
- * @param {boolean} [args.pruneTags]
+ * @param {boolean} [args.prune = false]
+ * @param {boolean} [args.pruneTags = false]
  *
  * @returns {Promise<FetchResult>}
  * @see FetchResult
@@ -77,7 +78,7 @@ export async function _fetch({
   remoteRef: _remoteRef,
   remote: _remote,
   url: _url,
-  corsProxy,
+  corsProxy = undefined,
   depth = null,
   since = null,
   exclude = [],

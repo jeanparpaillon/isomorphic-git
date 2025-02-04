@@ -1,4 +1,6 @@
 // @ts-check
+import * as types from '../typedefs.js'
+
 import {
   _stashPush,
   _stashApply,
@@ -21,8 +23,8 @@ import { join } from '../utils/join.js'
  * - when op === 'apply | pop', the stashed changes will overwrite the working directory, no abort when conflicts
  *
  * @param {object} args
- * @param {FsClient} args.fs - [required] a file system client
- * @param {string} [args.dir] - [required] The [working tree](dir-vs-gitdir.md) directory path
+ * @param {types.FsClient} args.fs - [required] a file system client
+ * @param {string} args.dir - [required] The [working tree](dir-vs-gitdir.md) directory path
  * @param {string} [args.gitdir=join(dir,'.git')] - [optional] The [git directory](dir-vs-gitdir.md) path
  * @param {'push' | 'pop' | 'apply' | 'drop' | 'list' | 'clear'} [args.op = 'push'] - [optional] name of stash operation, default to 'push'
  * @param {string} [args.message = ''] - [optional] message to be used for the stash entry, only applicable when op === 'push'

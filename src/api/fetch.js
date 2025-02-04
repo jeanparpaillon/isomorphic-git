@@ -1,5 +1,5 @@
 // @ts-check
-import '../typedefs.js'
+import * as types from '../typedefs.js'
 
 import { _fetch } from '../commands/fetch.js'
 import { FileSystem } from '../models/FileSystem.js'
@@ -21,14 +21,14 @@ import { join } from '../utils/join.js'
  * Fetch commits from a remote repository
  *
  * @param {object} args
- * @param {FsClient} args.fs - a file system client
+ * @param {types.FsClient} args.fs - a file system client
  * @param {HttpClient} args.http - an HTTP client
  * @param {ProgressCallback} [args.onProgress] - optional progress event callback
- * @param {MessageCallback} [args.onMessage] - optional message event callback
- * @param {AuthCallback} [args.onAuth] - optional auth fill callback
- * @param {AuthFailureCallback} [args.onAuthFailure] - optional auth rejected callback
- * @param {AuthSuccessCallback} [args.onAuthSuccess] - optional auth approved callback
- * @param {string} [args.dir] - The [working tree](dir-vs-gitdir.md) directory path
+ * @param {types.MessageCallback} [args.onMessage] - optional message event callback
+ * @param {types.AuthCallback} [args.onAuth] - optional auth fill callback
+ * @param {types.AuthFailureCallback} [args.onAuthFailure] - optional auth rejected callback
+ * @param {types.AuthSuccessCallback} [args.onAuthSuccess] - optional auth approved callback
+ * @param {string} args.dir - The [working tree](dir-vs-gitdir.md) directory path
  * @param {string} [args.gitdir=join(dir,'.git')] - [required] The [git directory](dir-vs-gitdir.md) path
  * @param {string} [args.url] - The URL of the remote repository. The default is the value set in the git config for that remote.
  * @param {string} [args.remote] - If URL is not specified, determines which remote to use.
@@ -36,9 +36,9 @@ import { join } from '../utils/join.js'
  * @param {string} [args.ref] - Which branch to fetch if `singleBranch` is true. By default this is the current branch or the remote's default branch.
  * @param {string} [args.remoteRef] - The name of the branch on the remote to fetch if `singleBranch` is true. By default this is the configured remote tracking branch.
  * @param {boolean} [args.tags = false] - Also fetch tags
- * @param {number} [args.depth] - Integer. Determines how much of the git repository's history to retrieve
+ * @param {number | null} [args.depth] - Integer. Determines how much of the git repository's history to retrieve
  * @param {boolean} [args.relative = false] - Changes the meaning of `depth` to be measured from the current shallow depth rather than from the branch tip.
- * @param {Date} [args.since] - Only fetch commits created after the given date. Mutually exclusive with `depth`.
+ * @param {Date | null} [args.since] - Only fetch commits created after the given date. Mutually exclusive with `depth`.
  * @param {string[]} [args.exclude = []] - A list of branches or tags. Instructs the remote server not to send us any commits reachable from these refs.
  * @param {boolean} [args.prune = false] - Delete local remote-tracking branches that are not present on the remote
  * @param {boolean} [args.pruneTags = false] - Prune local tags that don’t exist on the remote, and force-update those tags that differ

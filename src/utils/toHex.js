@@ -1,3 +1,4 @@
+// @ts-check
 export function toHex(buffer) {
   let hex = ''
   for (const byte of new Uint8Array(buffer)) {

@@ -1,11 +1,12 @@
 // @ts-check
+import { FileSystem } from '../models/FileSystem.js'
 import { GitRefManager } from '../managers/GitRefManager.js'
 
 /**
  * Delete a local tag ref
  *
  * @param {Object} args
- * @param {import('../models/FileSystem.js').FileSystem} args.fs
+ * @param {FileSystem} args.fs
  * @param {string} args.gitdir
  * @param {string} args.ref - The tag to delete
  *

@@ -1,3 +1,4 @@
+// @ts-check
 import { NotFoundError } from '../errors/NotFoundError.js'
 import { ObjectTypeError } from '../errors/ObjectTypeError.js'
 import { GitRefManager } from '../managers/GitRefManager.js'

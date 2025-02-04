@@ -1,5 +1,5 @@
 // @ts-check
-import '../typedefs.js'
+import * as types from '../typedefs.js'
 
 import { GitCommit } from '../models/GitCommit.js'
 import { _writeObject as writeObject } from '../storage/writeObject.js'
@@ -8,7 +8,7 @@ import { _writeObject as writeObject } from '../storage/writeObject.js'
  * @param {object} args
  * @param {import('../models/FileSystem.js').FileSystem} args.fs
  * @param {string} args.gitdir
- * @param {CommitObject} args.commit
+ * @param {types.CommitObject} args.commit
  *
  * @returns {Promise<string>}
  * @see CommitObject

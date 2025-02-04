@@ -1,3 +1,4 @@
+// @ts-check
 import { InvalidOidError } from '../errors/InvalidOidError.js'
 import { GitSideBand } from '../models/GitSideBand.js'
 import { forAwait } from '../utils/forAwait.js'

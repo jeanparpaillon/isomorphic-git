@@ -1,4 +1,6 @@
 // @ts-check
+import * as types from '../typedefs.js'
+
 import { InvalidFilepathError } from '../errors/InvalidFilepathError.js'
 import { NotFoundError } from '../errors/NotFoundError.js'
 import { GitIndexManager } from '../managers/GitIndexManager.js'
@@ -6,12 +8,13 @@ import { FileSystem } from '../models/FileSystem.js'
 import { _writeObject } from '../storage/writeObject.js'
 import { assertParameter } from '../utils/assertParameter.js'
 import { join } from '../utils/join.js'
+import { posixifyPathBuffer } from '../utils/posixifyPathBuffer.js'
 
 /**
  * Register file contents in the working tree or object database to the git index (aka staging area).
  *
  * @param {object} args
- * @param {FsClient} args.fs - a file system client
+ * @param {types.FsClient} args.fs - a file system client
  * @param {string} args.dir - The [working tree](dir-vs-gitdir.md) directory path
  * @param {string} [args.gitdir=join(dir, '.git')] - [required] The [git directory](dir-vs-gitdir.md) path
  * @param {string} args.filepath - File to act upon.
@@ -142,17 +145,10 @@ export async function updateIndex({
 
         // Write the file to the object database
         const object = stats.isSymbolicLink()
-          ? await fs.readlink(join(dir, filepath))
+          ? await fs.readlink(join(dir, filepath)).then(posixifyPathBuffer)
           : await fs.read(join(dir, filepath))
-
-        oid = await _writeObject({
-          fs,
-          gitdir,
-          type: 'blob',
-          format: 'content',
-          object,
-        })
-      }
+        if (object === null) throw new NotFoundError(filepath)
+        oid = await _writeObject({ fs, gitdir, type: 'blob', format: 'content', object })
 
       index.insert({
         filepath,
@@ -161,6 +157,7 @@ export async function updateIndex({
       })
 
       return oid
+      }
     })
   } catch (err) {
     err.caller = 'git.updateIndex'

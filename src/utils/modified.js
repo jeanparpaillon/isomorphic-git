@@ -1,8 +1,10 @@
 // @ts-check
+import * as types from '../typedefs.js'
+
 /**
  *
- * @param {WalkerEntry} entry
- * @param {WalkerEntry} base
+ * @param {types.WalkerEntry} entry
+ * @param {types.WalkerEntry} base
  *
  */
 export async function modified(entry, base) {

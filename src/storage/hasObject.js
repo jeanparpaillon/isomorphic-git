@@ -1,3 +1,4 @@
+// @ts-check
 import { hasObjectLoose } from '../storage/hasObjectLoose.js'
 import { hasObjectPacked } from '../storage/hasObjectPacked.js'
 import { _readObject as readObject } from '../storage/readObject.js'

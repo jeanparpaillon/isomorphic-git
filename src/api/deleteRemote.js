@@ -1,5 +1,5 @@
 // @ts-check
-import '../typedefs.js'
+import * as types from '../typedefs.js'
 
 import { _deleteRemote } from '../commands/deleteRemote.js'
 import { FileSystem } from '../models/FileSystem.js'
@@ -10,8 +10,8 @@ import { join } from '../utils/join.js'
  * Removes the local config entry for a given remote
  *
  * @param {Object} args
- * @param {FsClient} args.fs - a file system implementation
- * @param {string} [args.dir] - The [working tree](dir-vs-gitdir.md) directory path
+ * @param {types.FsClient} args.fs - a file system implementation
+ * @param {string} args.dir - The [working tree](dir-vs-gitdir.md) directory path
  * @param {string} [args.gitdir=join(dir,'.git')] - [required] The [git directory](dir-vs-gitdir.md) path
  * @param {string} args.remote - The name of the remote to delete
  *

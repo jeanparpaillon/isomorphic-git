@@ -1,5 +1,5 @@
 // @ts-check
-import '../typedefs.js'
+import * as types from '../typedefs.js'
 
 import { _log } from '../commands/log.js'
 import { FileSystem } from '../models/FileSystem.js'
@@ -10,18 +10,18 @@ import { join } from '../utils/join.js'
  * Get commit descriptions from the git history
  *
  * @param {object} args
- * @param {FsClient} args.fs - a file system client
- * @param {string} [args.dir] - The [working tree](dir-vs-gitdir.md) directory path
+ * @param {types.FsClient} args.fs - a file system client
+ * @param {string} args.dir - The [working tree](dir-vs-gitdir.md) directory path
  * @param {string} [args.gitdir=join(dir,'.git')] - [required] The [git directory](dir-vs-gitdir.md) path
  * @param {string=} args.filepath optional get the commit for the filepath only
  * @param {string} [args.ref = 'HEAD'] - The commit to begin walking backwards through the history from
  * @param {number=} [args.depth] - Limit the number of commits returned. No limit by default.
- * @param {Date} [args.since] - Return history newer than the given date. Can be combined with `depth` to get whichever is shorter.
+ * @param {Date | undefined} [args.since = undefined] - Return history newer than the given date. Can be combined with `depth` to get whichever is shorter.
  * @param {boolean=} [args.force=false] do not throw error if filepath is not exist (works only for a single file). defaults to false
  * @param {boolean=} [args.follow=false] Continue listing the history of a file beyond renames (works only for a single file). defaults to false
  * @param {object} [args.cache] - a [cache](cache.md) object
  *
- * @returns {Promise<Array<ReadCommitResult>>} Resolves to an array of ReadCommitResult objects
+ * @returns {Promise<Array<types.ReadCommitResult>>} Resolves to an array of ReadCommitResult objects
  * @see ReadCommitResult
  * @see CommitObject
  *
@@ -41,7 +41,7 @@ export async function log({
   gitdir = join(dir, '.git'),
   filepath,
   ref = 'HEAD',
-  depth,
+  depth = undefined,
   since, // Date
   force,
   follow,

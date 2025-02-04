@@ -1,5 +1,5 @@
 // @ts-check
-import '../typedefs.js'
+import * as types from '../typedefs.js'
 
 import { _addRemote } from '../commands/addRemote.js'
 import { _checkout } from '../commands/checkout.js'
@@ -13,22 +13,22 @@ import { GitConfigManager } from '../managers/GitConfigManager.js'
  * @param {object} args.cache
  * @param {HttpClient} args.http
  * @param {ProgressCallback} [args.onProgress]
- * @param {MessageCallback} [args.onMessage]
- * @param {AuthCallback} [args.onAuth]
- * @param {AuthFailureCallback} [args.onAuthFailure]
- * @param {AuthSuccessCallback} [args.onAuthSuccess]
- * @param {PostCheckoutCallback} [args.onPostCheckout]
- * @param {string} [args.dir]
+ * @param {types.MessageCallback} [args.onMessage]
+ * @param {types.AuthCallback} [args.onAuth]
+ * @param {types.AuthFailureCallback} [args.onAuthFailure]
+ * @param {types.AuthSuccessCallback} [args.onAuthSuccess]
+ * @param {types.PostCheckoutCallback} [args.onPostCheckout]
+ * @param {string} args.dir
  * @param {string} args.gitdir
  * @param {string} args.url
- * @param {string} args.corsProxy
- * @param {string} args.ref
+ * @param {string | undefined} args.corsProxy
+ * @param {string | undefined} args.ref
  * @param {boolean} args.singleBranch
  * @param {boolean} args.noCheckout
  * @param {boolean} args.noTags
  * @param {string} args.remote
- * @param {number} args.depth
- * @param {Date} args.since
+ * @param {number | null} args.depth
+ * @param {Date | null} args.since
  * @param {string[]} args.exclude
  * @param {boolean} args.relative
  * @param {Object<string, string>} args.headers
@@ -90,6 +90,7 @@ export async function _clone({
       headers,
       tags: !noTags,
     })
+    if (defaultBranch === null) return
     if (fetchHead === null) return
     ref = ref || defaultBranch
     ref = ref.replace('refs/heads/', '')

@@ -1,9 +1,9 @@
+// @ts-check
 import { BaseError } from './BaseError.js'
 
 export class MultipleGitError extends BaseError {
   /**
    * @param {Error[]} errors
-   * @param {string} message
    */
   constructor(errors) {
     super(

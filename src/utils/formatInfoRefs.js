@@ -1,12 +1,12 @@
 // @ts-check
-import '../typedefs.js'
+import * as types from '../typedefs.js'
 
 /**
  * @param {any} remote
- * @param {string} prefix
+ * @param {string | undefined} prefix
  * @param {boolean} symrefs
  * @param {boolean} peelTags
- * @returns {ServerRef[]}
+ * @returns {types.ServerRef[]}
  */
 export function formatInfoRefs(remote, prefix, symrefs, peelTags) {
   const refs = []
@@ -26,7 +26,7 @@ export function formatInfoRefs(remote, prefix, symrefs, peelTags) {
       }
       continue
     }
-    /** @type ServerRef */
+    /** @type types.ServerRef */
     const ref = { ref: key, oid: value }
     if (symrefs) {
       if (remote.symrefs.has(key)) {

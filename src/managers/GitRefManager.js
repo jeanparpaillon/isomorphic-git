@@ -1,3 +1,4 @@
+// @ts-check
 // This is a convenience wrapper for reading and writing files in the 'refs' directory.
 import AsyncLock from 'async-lock'
 
@@ -39,7 +40,7 @@ export class GitRefManager {
     refs,
     symrefs,
     tags,
-    refspecs = undefined,
+    refspecs = [],
     prune = false,
     pruneTags = false,
   }) {
@@ -50,7 +51,7 @@ export class GitRefManager {
       }
     }
     const config = await GitConfigManager.get({ fs, gitdir })
-    if (!refspecs) {
+    if (refspecs.length === 0) {
       refspecs = await config.getall(`remote.${remote}.fetch`)
       if (refspecs.length === 0) {
         throw new NoRefspecError(remote)
@@ -241,6 +242,15 @@ export class GitRefManager {
     }
   }
 
+  /**
+   * @param {object} args
+   * @param {import('../models/FileSystem.js').FileSystem} args.fs
+   * @param {string} args.gitdir
+   * @param {string} args.ref
+   * 
+   * @returns {Promise<string>}
+   * 
+   */
   static async expand({ fs, gitdir, ref }) {
     // Is it a complete and valid SHA?
     if (ref.length === 40 && /[0-9a-f]{40}/.test(ref)) {

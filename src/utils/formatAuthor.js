@@ -1,3 +1,4 @@
+// @ts-check
 export function formatAuthor({ name, email, timestamp, timezoneOffset }) {
   timezoneOffset = formatTimezoneOffset(timezoneOffset)
   return `${name} <${email}> ${timestamp} ${timezoneOffset}`

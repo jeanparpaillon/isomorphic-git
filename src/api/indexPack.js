@@ -1,5 +1,5 @@
 // @ts-check
-import '../typedefs.js'
+import * as types from '../typedefs.js'
 
 import { _indexPack } from '../commands/indexPack.js'
 import { FileSystem } from '../models/FileSystem.js'
@@ -10,7 +10,7 @@ import { join } from '../utils/join.js'
  * Create the .idx file for a given .pack file
  *
  * @param {object} args
- * @param {FsClient} args.fs - a file system client
+ * @param {types.FsClient} args.fs - a file system client
  * @param {ProgressCallback} [args.onProgress] - optional progress event callback
  * @param {string} args.dir - The [working tree](dir-vs-gitdir.md) directory path
  * @param {string} [args.gitdir=join(dir,'.git')] - [required] The [git directory](dir-vs-gitdir.md) path

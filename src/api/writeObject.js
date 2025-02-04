@@ -1,5 +1,5 @@
 // @ts-check
-import '../typedefs.js'
+import * as types from '../typedefs.js'
 
 import { ObjectTypeError } from '../errors/ObjectTypeError.js'
 import { FileSystem } from '../models/FileSystem.js'
@@ -37,11 +37,11 @@ import { join } from '../utils/join.js'
  * > If you know the type of object you are writing, use [`writeBlob`](./writeBlob.md), [`writeCommit`](./writeCommit.md), [`writeTag`](./writeTag.md), or [`writeTree`](./writeTree.md).
  *
  * @param {object} args
- * @param {FsClient} args.fs - a file system client
- * @param {string} [args.dir] - The [working tree](dir-vs-gitdir.md) directory path
+ * @param {types.FsClient} args.fs - a file system client
+ * @param {string} args.dir - The [working tree](dir-vs-gitdir.md) directory path
  * @param {string} [args.gitdir=join(dir,'.git')] - [required] The [git directory](dir-vs-gitdir.md) path
- * @param {string | Uint8Array | CommitObject | TreeObject | TagObject} args.object - The object to write.
- * @param {'blob'|'tree'|'commit'|'tag'} [args.type] - The kind of object to write.
+ * @param {string | Uint8Array | types.CommitObject | types.TreeObject | types.TagObject} args.object - The object to write.
+ * @param {types.ObjectType} args.type - The kind of object to write.
  * @param {'deflated' | 'wrapped' | 'content' | 'parsed'} [args.format = 'parsed'] - What format the object is in. The possible choices are listed below.
  * @param {string} [args.oid] - If `format` is `'deflated'` then this param is required. Otherwise it is calculated.
  * @param {string} [args.encoding] - If `type` is `'blob'` then `object` will be converted to a Uint8Array using `encoding`.
@@ -96,13 +96,14 @@ export async function writeObject({
           object = GitTree.from(object).toObject()
           break
         case 'blob':
+          /* @ts-ignore */
           object = Buffer.from(object, encoding)
           break
         case 'tag':
           object = GitAnnotatedTag.from(object).toObject()
           break
         default:
-          throw new ObjectTypeError(oid || '', type, 'blob|commit|tag|tree')
+          throw new ObjectTypeError(oid || '', type)
       }
       // GitObjectManager does not know how to serialize content, so we tweak that parameter before passing it.
       format = 'content'
@@ -111,6 +112,7 @@ export async function writeObject({
       fs,
       gitdir,
       type,
+      /* @ts-ignore */
       object,
       oid,
       format,

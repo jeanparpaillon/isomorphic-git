@@ -1,3 +1,4 @@
+// @ts-check
 import { FIFO } from './FIFO.js'
 import { forAwait } from './forAwait.js'
 

@@ -1,10 +1,11 @@
-import '../typedefs.js'
+// @ts-check
+import * as types from '../typedefs.js'
 
 import { ParseError } from '../errors/ParseError.js'
 import { GitPktLine } from '../models/GitPktLine.js'
 
 export async function parseReceivePackResponse(packfile) {
-  /** @type PushResult */
+  /** @type types.PushResult */
   const result = {}
   let response = ''
   const read = GitPktLine.streamReader(packfile)
@@ -14,7 +15,7 @@ export async function parseReceivePackResponse(packfile) {
     line = await read()
   }
 
-  const lines = response.toString('utf8').split('\n')
+  const lines = response.toString().split('\n')
   // We're expecting "unpack {unpack-result}"
   line = lines.shift()
   if (!line.startsWith('unpack ')) {

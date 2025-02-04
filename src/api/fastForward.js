@@ -1,5 +1,5 @@
 // @ts-check
-import '../typedefs.js'
+import * as types from '../typedefs.js'
 
 import { _pull } from '../commands/pull.js'
 import { FileSystem } from '../models/FileSystem.js'
@@ -10,16 +10,16 @@ import { join } from '../utils/join.js'
  * Like `pull`, but hard-coded with `fastForward: true` so there is no need for an `author` parameter.
  *
  * @param {object} args
- * @param {FsClient} args.fs - a file system client
+ * @param {types.FsClient} args.fs - a file system client
  * @param {HttpClient} args.http - an HTTP client
  * @param {ProgressCallback} [args.onProgress] - optional progress event callback
- * @param {MessageCallback} [args.onMessage] - optional message event callback
- * @param {AuthCallback} [args.onAuth] - optional auth fill callback
- * @param {AuthFailureCallback} [args.onAuthFailure] - optional auth rejected callback
- * @param {AuthSuccessCallback} [args.onAuthSuccess] - optional auth approved callback
- * @param {string} args.dir] - The [working tree](dir-vs-gitdir.md) directory path
+ * @param {types.MessageCallback} [args.onMessage] - optional message event callback
+ * @param {types.AuthCallback} [args.onAuth] - optional auth fill callback
+ * @param {types.AuthFailureCallback} [args.onAuthFailure] - optional auth rejected callback
+ * @param {types.AuthSuccessCallback} [args.onAuthSuccess] - optional auth approved callback
+ * @param {string} args.dir - The [working tree](dir-vs-gitdir.md) directory path
  * @param {string} [args.gitdir=join(dir,'.git')] - [required] The [git directory](dir-vs-gitdir.md) path
- * @param {string} [args.ref] - Which branch to merge into. By default this is the currently checked out branch.
+ * @param {string | undefined} [args.ref] - Which branch to merge into. By default this is the currently checked out branch.
  * @param {string} [args.url] - (Added in 1.1.0) The URL of the remote repository. The default is the value set in the git config for that remote.
  * @param {string} [args.remote] - (Added in 1.1.0) If URL is not specified, determines which remote to use.
  * @param {string} [args.remoteRef] - (Added in 1.1.0) The name of the branch on the remote to fetch. By default this is the configured remote tracking branch.
@@ -56,7 +56,7 @@ export async function fastForward({
   remote,
   remoteRef,
   corsProxy,
-  singleBranch,
+  singleBranch = false,
   headers = {},
   cache = {},
 }) {

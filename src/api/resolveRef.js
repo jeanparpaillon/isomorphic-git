@@ -1,4 +1,6 @@
 // @ts-check
+import * as types from '../typedefs.js'
+
 import { GitRefManager } from '../managers/GitRefManager.js'
 import { FileSystem } from '../models/FileSystem.js'
 import { assertParameter } from '../utils/assertParameter.js'
@@ -8,8 +10,8 @@ import { join } from '../utils/join.js'
  * Get the value of a symbolic ref or resolve a ref to its SHA-1 object id
  *
  * @param {object} args
- * @param {FsClient} args.fs - a file system client
- * @param {string} [args.dir] - The [working tree](dir-vs-gitdir.md) directory path
+ * @param {types.FsClient} args.fs - a file system client
+ * @param {string} args.dir - The [working tree](dir-vs-gitdir.md) directory path
  * @param {string} [args.gitdir=join(dir, '.git')] - [required] The [git directory](dir-vs-gitdir.md) path
  * @param {string} args.ref - The ref to resolve
  * @param {number} [args.depth = undefined] - How many symbolic references to follow before returning

@@ -1,5 +1,18 @@
+// @ts-check
 import { GitPktLine } from '../models/GitPktLine.js'
 
+/**
+ * 
+ * @param {object} opts 
+ * @param {string[]} [opts.capabilities]
+ * @param {string[]} [opts.wants]
+ * @param {string[]} [opts.haves]
+ * @param {string[]} [opts.shallows]
+ * @param {number | null} [opts.depth]
+ * @param {Date | null} [opts.since]
+ * @param {string[]} [opts.exclude]
+ * @returns 
+ */
 export function writeUploadPackRequest({
   capabilities = [],
   wants = [],

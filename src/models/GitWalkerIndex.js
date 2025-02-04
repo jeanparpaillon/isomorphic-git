@@ -1,3 +1,4 @@
+// @ts-check
 import { GitIndexManager } from '../managers/GitIndexManager.js'
 import { compareStrings } from '../utils/compareStrings.js'
 import { flatFileListToDirectoryStructure } from '../utils/flatFileListToDirectoryStructure.js'

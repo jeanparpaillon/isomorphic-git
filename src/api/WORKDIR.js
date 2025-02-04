@@ -1,5 +1,4 @@
 // @ts-check
-import '../typedefs.js'
 
 /**
  * Get a working directory `Walker`

@@ -1,3 +1,4 @@
+// @ts-check
 import { InternalError } from '../errors/InternalError.js'
 import { formatAuthor } from '../utils/formatAuthor.js'
 import { normalizeNewlines } from '../utils/normalizeNewlines.js'

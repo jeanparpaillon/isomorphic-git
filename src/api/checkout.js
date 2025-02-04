@@ -1,5 +1,5 @@
 // @ts-check
-import '../typedefs.js'
+import * as types from '../typedefs.js'
 
 import { _checkout } from '../commands/checkout.js'
 import { FileSystem } from '../models/FileSystem.js'
@@ -12,9 +12,9 @@ import { join } from '../utils/join.js'
  * If the branch already exists it will check out that branch. Otherwise, it will create a new remote tracking branch set to track the remote branch of that name.
  *
  * @param {object} args
- * @param {FsClient} args.fs - a file system implementation
+ * @param {types.FsClient} args.fs - a file system implementation
  * @param {ProgressCallback} [args.onProgress] - optional progress event callback
- * @param {PostCheckoutCallback} [args.onPostCheckout] - optional post-checkout hook callback
+ * @param {types.PostCheckoutCallback} [args.onPostCheckout] - optional post-checkout hook callback
  * @param {string} args.dir - The [working tree](dir-vs-gitdir.md) directory path
  * @param {string} [args.gitdir=join(dir,'.git')] - [required] The [git directory](dir-vs-gitdir.md) path
  * @param {string} [args.ref = 'HEAD'] - Source to checkout files from

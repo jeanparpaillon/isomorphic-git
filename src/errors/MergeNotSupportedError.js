@@ -1,3 +1,4 @@
+// @ts-check
 import { BaseError } from './BaseError.js'
 
 export class MergeNotSupportedError extends BaseError {

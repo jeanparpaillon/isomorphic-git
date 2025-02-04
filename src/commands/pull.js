@@ -1,5 +1,7 @@
 // @ts-check
+import * as types from '../typedefs.js'
 
+import { FileSystem } from '../models/FileSystem.js'
 import { _checkout } from '../commands/checkout.js'
 import { _currentBranch } from '../commands/currentBranch.js'
 import { _fetch } from '../commands/fetch.js'
@@ -8,26 +10,26 @@ import { MissingParameterError } from '../errors/MissingParameterError.js'
 
 /**
  * @param {object} args
- * @param {import('../models/FileSystem.js').FileSystem} args.fs
+ * @param {FileSystem} args.fs
  * @param {object} args.cache
  * @param {HttpClient} args.http
  * @param {ProgressCallback} [args.onProgress]
- * @param {MessageCallback} [args.onMessage]
- * @param {AuthCallback} [args.onAuth]
- * @param {AuthFailureCallback} [args.onAuthFailure]
- * @param {AuthSuccessCallback} [args.onAuthSuccess]
+ * @param {types.MessageCallback} [args.onMessage]
+ * @param {types.AuthCallback} [args.onAuth]
+ * @param {types.AuthFailureCallback} [args.onAuthFailure]
+ * @param {types.AuthSuccessCallback} [args.onAuthSuccess]
  * @param {string} args.dir
  * @param {string} args.gitdir
- * @param {string} args.ref
+ * @param {string | undefined} args.ref
  * @param {string} [args.url]
  * @param {string} [args.remote]
  * @param {string} [args.remoteRef]
  * @param {boolean} [args.prune]
  * @param {boolean} [args.pruneTags]
  * @param {string} [args.corsProxy]
- * @param {boolean} args.singleBranch
- * @param {boolean} args.fastForward
- * @param {boolean} args.fastForwardOnly
+ * @param {boolean} [args.singleBranch = false]
+ * @param {boolean} [args.fastForward]
+ * @param {boolean} [args.fastForwardOnly]
  * @param {Object<string, string>} [args.headers]
  * @param {Object} args.author
  * @param {string} args.author.name
@@ -64,7 +66,7 @@ export async function _pull({
   fastForward,
   fastForwardOnly,
   corsProxy,
-  singleBranch,
+  singleBranch = false,
   headers,
   author,
   committer,
@@ -101,10 +103,16 @@ export async function _pull({
       prune,
       pruneTags,
     })
+
+    if (fetchHead === null || fetchHead === undefined) {
+      return
+    }
+
     // Merge the remote tracking branch into the local one.
     await _merge({
       fs,
       cache,
+      dir,
       gitdir,
       ours: ref,
       theirs: fetchHead,
@@ -117,6 +125,7 @@ export async function _pull({
       dryRun: false,
       noUpdateBranch: false,
     })
+    
     await _checkout({
       fs,
       cache,

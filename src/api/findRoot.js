@@ -1,5 +1,5 @@
 // @ts-check
-import '../typedefs.js'
+import * as types from '../typedefs.js'
 
 import { _findRoot } from '../commands/findRoot.js'
 import { FileSystem } from '../models/FileSystem.js'
@@ -11,7 +11,7 @@ import { assertParameter } from '../utils/assertParameter.js'
  * Starting at `filepath`, walks upward until it finds a directory that contains a subdirectory called '.git'.
  *
  * @param {Object} args
- * @param {FsClient} args.fs - a file system client
+ * @param {types.FsClient} args.fs - a file system client
  * @param {string} args.filepath - The file directory to start searching in.
  *
  * @returns {Promise<string>} Resolves successfully with a root git directory path

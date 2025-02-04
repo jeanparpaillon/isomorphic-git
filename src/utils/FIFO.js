@@ -1,3 +1,4 @@
+// @ts-check
 export class FIFO {
   constructor() {
     this._queue = []

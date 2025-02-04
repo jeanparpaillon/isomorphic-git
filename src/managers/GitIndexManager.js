@@ -1,3 +1,4 @@
+// @ts-check
 // import LockManager from 'travix-lock-manager'
 import AsyncLock from 'async-lock'
 
@@ -46,8 +47,10 @@ export class GitIndexManager {
    * @param {import('../models/FileSystem.js').FileSystem} opts.fs
    * @param {string} opts.gitdir
    * @param {object} opts.cache
-   * @param {bool} opts.allowUnmerged
+   * @param {boolean} [opts.allowUnmerged=true]
    * @param {function(GitIndex): any} closure
+   * 
+   * @returns {Promise<any>}
    */
   static async acquire({ fs, gitdir, cache, allowUnmerged = true }, closure) {
     if (!cache[IndexCache]) cache[IndexCache] = createCache()

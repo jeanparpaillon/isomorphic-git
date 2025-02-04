@@ -1,3 +1,4 @@
+// @ts-check
 export function normalizeNewlines(str) {
   // remove all <CR>
   str = str.replace(/\r/g, '')

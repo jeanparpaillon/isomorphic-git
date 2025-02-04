@@ -1,5 +1,5 @@
 // @ts-check
-import '../typedefs.js'
+import * as types from '../typedefs.js'
 
 import { STAGE } from '../commands/STAGE.js'
 import { TREE } from '../commands/TREE.js'
@@ -27,7 +27,7 @@ import { modified } from '../utils/modified.js'
  * If there were uncommitted changes when the merge started (and especially if those changes were further modified after the merge was started), `git.abortMerge` will in some cases be unable to reconstruct the original (pre-merge) changes.
  *
  * @param {object} args
- * @param {FsClient} args.fs - a file system implementation
+ * @param {types.FsClient} args.fs - a file system implementation
  * @param {string} args.dir - The [working tree](dir-vs-gitdir.md) directory path
  * @param {string} [args.gitdir=join(dir, '.git')] - [required] The [git directory](dir-vs-gitdir.md) path
  * @param {string} [args.commit='HEAD'] - commit to reset the index and worktree to, defaults to HEAD

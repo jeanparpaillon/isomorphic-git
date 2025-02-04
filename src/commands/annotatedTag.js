@@ -1,6 +1,7 @@
 // @ts-check
-import '../typedefs.js'
+import * as types from '../typedefs.js'
 
+import { FileSystem } from '../models/FileSystem.js'
 import { AlreadyExistsError } from '../errors/AlreadyExistsError.js'
 import { GitRefManager } from '../managers/GitRefManager.js'
 import { GitAnnotatedTag } from '../models/GitAnnotatedTag.js'
@@ -11,9 +12,9 @@ import { _writeObject as writeObject } from '../storage/writeObject.js'
  * Create an annotated tag.
  *
  * @param {object} args
- * @param {import('../models/FileSystem.js').FileSystem} args.fs
+ * @param {FileSystem} args.fs
  * @param {any} args.cache
- * @param {SignCallback} [args.onSign]
+ * @param {types.SignCallback} [args.onSign]
  * @param {string} args.gitdir
  * @param {string} args.ref
  * @param {string} [args.message = ref]

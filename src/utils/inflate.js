@@ -1,3 +1,4 @@
+// @ts-check
 /* eslint-env node, browser */
 /* global DecompressionStream */
 import pako from 'pako'

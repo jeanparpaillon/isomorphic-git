@@ -1,3 +1,4 @@
+// @ts-check
 import { getIterator } from './getIterator.js'
 
 // Currently 'for await' upsets my linters.

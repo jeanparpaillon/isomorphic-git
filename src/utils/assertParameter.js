@@ -1,3 +1,4 @@
+// @ts-check
 import { MissingParameterError } from '../errors/MissingParameterError.js'
 
 export function assertParameter(name, value) {

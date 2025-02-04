@@ -44,7 +44,7 @@ export async function _isDescendent({
     if (searchdepth++ === depth) {
       throw new MaxDepthError(depth)
     }
-    const oid = queue.shift()
+    const oid = queue.shift() || ''
     const { type, object } = await _readObject({
       fs,
       cache,

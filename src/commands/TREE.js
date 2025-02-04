@@ -1,5 +1,5 @@
 // @ts-check
-import '../typedefs.js'
+import * as types from '../typedefs.js'
 
 import { GitWalkerRepo } from '../models/GitWalkerRepo.js'
 import { GitWalkSymbol } from '../utils/symbols.js'
@@ -7,7 +7,7 @@ import { GitWalkSymbol } from '../utils/symbols.js'
 /**
  * @param {object} args
  * @param {string} [args.ref='HEAD']
- * @returns {Walker}
+ * @returns {types.Walker}
  */
 export function TREE({ ref = 'HEAD' } = {}) {
   const o = Object.create(null)

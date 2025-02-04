@@ -1,5 +1,5 @@
 // @ts-check
-import '../typedefs.js'
+import * as types from '../typedefs.js'
 
 import { MissingNameError } from '../errors/MissingNameError.js'
 import { MissingParameterError } from '../errors/MissingParameterError.js'
@@ -20,19 +20,11 @@ import { _readCommit as readCommit } from './readCommit.js'
  * @param {Object} args
  * @param {import('../models/FileSystem.js').FileSystem} args.fs
  * @param {object} args.cache
- * @param {SignCallback} [args.onSign]
+ * @param {types.SignCallback} [args.onSign]
  * @param {string} args.gitdir
  * @param {string} [args.message]
- * @param {Object} [args.author]
- * @param {string} [args.author.name]
- * @param {string} [args.author.email]
- * @param {number} [args.author.timestamp]
- * @param {number} [args.author.timezoneOffset]
- * @param {Object} [args.committer]
- * @param {string} [args.committer.name]
- * @param {string} [args.committer.email]
- * @param {number} [args.committer.timestamp]
- * @param {number} [args.committer.timezoneOffset]
+ * @param {types.PersonInfo | undefined} [args.author]
+ * @param {types.PersonInfo | undefined} [args.committer]
  * @param {string} [args.signingKey]
  * @param {boolean} [args.amend = false]
  * @param {boolean} [args.dryRun = false]

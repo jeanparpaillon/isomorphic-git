@@ -1,3 +1,4 @@
+// @ts-check
 /*
 If 'side-band' or 'side-band-64k' capabilities have been specified by
 the client, the server will send the packfile data multiplexed.

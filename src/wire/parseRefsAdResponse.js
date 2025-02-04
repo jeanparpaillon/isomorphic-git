@@ -1,3 +1,4 @@
+// @ts-check
 import { EmptyServerResponseError } from '../errors/EmptyServerResponseError.js'
 import { ParseError } from '../errors/ParseError.js'
 import { GitPktLine } from '../models/GitPktLine.js'

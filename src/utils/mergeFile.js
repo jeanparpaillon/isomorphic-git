@@ -1,3 +1,4 @@
+// @ts-check
 import diff3Merge from 'diff3'
 
 const LINEBREAKS = /^.*(\r?\n|$)/gm

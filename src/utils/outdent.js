@@ -1,3 +1,4 @@
+// @ts-check
 export function outdent(str) {
   return str
     .split('\n')

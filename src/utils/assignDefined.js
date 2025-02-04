@@ -1,3 +1,4 @@
+// @ts-check
 // Like Object.assign but ignore properties with undefined values
 // ref: https://stackoverflow.com/q/39513815
 export function assignDefined(target, ...sources) {

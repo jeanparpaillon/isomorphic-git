@@ -1,5 +1,5 @@
 // @ts-check
-import '../typedefs.js'
+import * as types from '../typedefs.js'
 
 import { _packObjects } from '../commands/packObjects.js'
 import { FileSystem } from '../models/FileSystem.js'
@@ -17,8 +17,8 @@ import { join } from '../utils/join.js'
  * Create a packfile from an array of SHA-1 object ids
  *
  * @param {object} args
- * @param {FsClient} args.fs - a file system client
- * @param {string} [args.dir] - The [working tree](dir-vs-gitdir.md) directory path
+ * @param {types.FsClient} args.fs - a file system client
+ * @param {string} args.dir - The [working tree](dir-vs-gitdir.md) directory path
  * @param {string} [args.gitdir=join(dir, '.git')] - [required] The [git directory](dir-vs-gitdir.md) path
  * @param {string[]} args.oids - An array of SHA-1 object ids to be included in the packfile
  * @param {boolean} [args.write = false] - Whether to save the packfile to disk or not

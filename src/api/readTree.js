@@ -1,5 +1,5 @@
 // @ts-check
-import '../typedefs.js'
+import * as types from '../typedefs.js'
 
 import { _readTree } from '../commands/readTree.js'
 import { FileSystem } from '../models/FileSystem.js'
@@ -10,15 +10,15 @@ import { join } from '../utils/join.js'
  *
  * @typedef {Object} ReadTreeResult - The object returned has the following schema:
  * @property {string} oid - SHA-1 object id of this tree
- * @property {TreeObject} tree - the parsed tree object
+ * @property {types.TreeObject} tree - the parsed tree object
  */
 
 /**
  * Read a tree object directly
  *
  * @param {object} args
- * @param {FsClient} args.fs - a file system client
- * @param {string} [args.dir] - The [working tree](dir-vs-gitdir.md) directory path
+ * @param {types.FsClient} args.fs - a file system client
+ * @param {string} args.dir - The [working tree](dir-vs-gitdir.md) directory path
  * @param {string} [args.gitdir=join(dir,'.git')] - [required] The [git directory](dir-vs-gitdir.md) path
  * @param {string} args.oid - The SHA-1 object id to get. Annotated tags and commits are peeled.
  * @param {string} [args.filepath] - Don't return the object with `oid` itself, but resolve `oid` to a tree and then return the tree object at that filepath.

@@ -1,5 +1,5 @@
 // @ts-check
-import '../typedefs.js'
+import * as types from '../typedefs.js'
 
 import { arrayRange } from '../utils/arrayRange.js'
 import { flat } from '../utils/flat.js'
@@ -12,10 +12,10 @@ import { unionOfIterators } from '../utils/unionOfIterators.js'
  * @param {object} args.cache
  * @param {string} [args.dir]
  * @param {string} [args.gitdir=join(dir,'.git')]
- * @param {Walker[]} args.trees
- * @param {WalkerMap} [args.map]
- * @param {WalkerReduce} [args.reduce]
- * @param {WalkerIterate} [args.iterate]
+ * @param {types.Walker[]} args.trees
+ * @param {types.WalkerMap} [args.map]
+ * @param {types.WalkerReduce} [args.reduce]
+ * @param {types.WalkerIterate} [args.iterate]
  *
  * @returns {Promise<any>} The finished tree-walking result
  *

@@ -1,3 +1,4 @@
+// @ts-check
 import { GitPktLine } from '../models/GitPktLine.js'
 import { pkg } from '../utils/pkg.js'
 

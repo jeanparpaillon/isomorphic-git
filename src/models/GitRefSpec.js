@@ -1,13 +1,12 @@
+// @ts-check
 import { InternalError } from '../errors/InternalError.js'
 
 export class GitRefSpec {
   constructor({ remotePath, localPath, force, matchPrefix }) {
-    Object.assign(this, {
-      remotePath,
-      localPath,
-      force,
-      matchPrefix,
-    })
+    this.remotePath = remotePath
+    this.localPath = localPath
+    this.force = force
+    this.matchPrefix = matchPrefix
   }
 
   static from(refspec) {

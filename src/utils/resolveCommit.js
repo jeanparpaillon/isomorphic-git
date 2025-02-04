@@ -1,3 +1,4 @@
+// @ts-check
 import { ObjectTypeError } from '../errors/ObjectTypeError.js'
 import { GitAnnotatedTag } from '../models/GitAnnotatedTag.js'
 import { GitCommit } from '../models/GitCommit.js'
