@@ -1,5 +1,4 @@
 // @ts-check
-import * as types from '../typedefs.js'
 
 import { STAGE } from '../commands/STAGE.js'
 import { TREE } from '../commands/TREE.js'
@@ -13,6 +12,7 @@ import { GitConfigManager } from '../managers/GitConfigManager.js'
 import { GitIndexManager } from '../managers/GitIndexManager.js'
 import { GitRefManager } from '../managers/GitRefManager.js'
 import { _readObject as readObject } from '../storage/readObject.js'
+import * as types from '../typedefs.js'
 import { flat } from '../utils/flat.js'
 import { worthWalking } from '../utils/worthWalking.js'
 
@@ -492,12 +492,12 @@ async function analyze({
             }
           }
         }
-        /* eslint-disable no-fallthrough */
+         
         // File missing from workdir
         case '110':
         // Possibly modified entries
         case '111': {
-          /* eslint-enable no-fallthrough */
+           
           switch (`${await stage.type()}-${await commit.type()}`) {
             case 'tree-tree': {
               return

@@ -1,5 +1,6 @@
 // @ts-check
 import * as types from '../typedefs.js'
+
 import { BaseError } from './BaseError.js'
 
 export class GitPushError extends BaseError {

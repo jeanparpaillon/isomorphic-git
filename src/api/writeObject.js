@@ -1,5 +1,4 @@
 // @ts-check
-import * as types from '../typedefs.js'
 
 import { ObjectTypeError } from '../errors/ObjectTypeError.js'
 import { FileSystem } from '../models/FileSystem.js'
@@ -7,6 +6,7 @@ import { GitAnnotatedTag } from '../models/GitAnnotatedTag.js'
 import { GitCommit } from '../models/GitCommit.js'
 import { GitTree } from '../models/GitTree.js'
 import { _writeObject } from '../storage/writeObject.js'
+import * as types from '../typedefs.js'
 import { join } from '../utils/join.js'
 
 /**

@@ -1,5 +1,4 @@
 // @ts-check
-import * as types from '../typedefs.js'
 
 import { MultipleGitError } from '../errors/MultipleGitError.js'
 import { NotFoundError } from '../errors/NotFoundError.js'
@@ -8,6 +7,7 @@ import { GitIgnoreManager } from '../managers/GitIgnoreManager.js'
 import { GitIndexManager } from '../managers/GitIndexManager.js'
 import { FileSystem } from '../models/FileSystem.js'
 import { _writeObject } from '../storage/writeObject.js'
+import * as types from '../typedefs.js'
 import { assertParameter } from '../utils/assertParameter.js'
 import { join } from '../utils/join.js'
 import { posixifyPathBuffer } from '../utils/posixifyPathBuffer.js'
@@ -66,8 +66,8 @@ export async function add({
 }
 
 /**
- * 
- * @param {Object} args 
+ *
+ * @param {Object} args
  * @param {string} args.dir
  * @param {string} args.gitdir
  * @param {FileSystem} args.fs
@@ -75,7 +75,7 @@ export async function add({
  * @param {import('../models/GitIndex.js').GitIndex} args.index
  * @param {boolean} args.force
  * @param {boolean} args.parallel
- * @returns 
+ * @returns
  */
 async function addToIndex({
   dir,
@@ -152,18 +152,19 @@ async function addToIndex({
     throw rejectedPromises[0]
   }
 
-  const fulfilledPromises = settledPromises
-    .reduce(
-      /**
-       * 
-       * @param {any[]} acc 
-       * @param {PromiseSettledResult<any>} settle 
-       * @returns 
-       */
-      (acc, settle) => 
-        settle.status === 'fulfilled' && settle.value ? [...acc, settle.value] : acc,
-      []
-    )
+  const fulfilledPromises = settledPromises.reduce(
+    /**
+     *
+     * @param {any[]} acc
+     * @param {PromiseSettledResult<any>} settle
+     * @returns
+     */
+    (acc, settle) =>
+      settle.status === 'fulfilled' && settle.value
+        ? [...acc, settle.value]
+        : acc,
+    []
+  )
 
   return fulfilledPromises
 }

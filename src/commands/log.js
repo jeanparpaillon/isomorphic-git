@@ -1,10 +1,10 @@
 // @ts-check
-import * as types from '../typedefs.js'
 
 import { _readCommit } from '../commands/readCommit.js'
 import { NotFoundError } from '../errors/NotFoundError.js'
 import { GitRefManager } from '../managers/GitRefManager.js'
 import { GitShallowManager } from '../managers/GitShallowManager.js'
+import * as types from '../typedefs.js'
 import { compareAge } from '../utils/compareAge.js'
 import { resolveFileIdInTree } from '../utils/resolveFileIdInTree.js'
 import { resolveFilepath } from '../utils/resolveFilepath.js'

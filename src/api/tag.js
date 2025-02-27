@@ -1,10 +1,10 @@
 // @ts-check
-import * as types from '../typedefs.js'
 
 import { AlreadyExistsError } from '../errors/AlreadyExistsError.js'
 import { MissingParameterError } from '../errors/MissingParameterError.js'
 import { GitRefManager } from '../managers/GitRefManager.js'
 import { FileSystem } from '../models/FileSystem.js'
+import * as types from '../typedefs.js'
 import { assertParameter } from '../utils/assertParameter.js'
 import { join } from '../utils/join.js'
 

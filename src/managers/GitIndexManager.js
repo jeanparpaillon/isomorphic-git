@@ -49,7 +49,7 @@ export class GitIndexManager {
    * @param {object} opts.cache
    * @param {boolean} [opts.allowUnmerged=true]
    * @param {function(GitIndex): any} closure
-   * 
+   *
    * @returns {Promise<any>}
    */
   static async acquire({ fs, gitdir, cache, allowUnmerged = true }, closure) {

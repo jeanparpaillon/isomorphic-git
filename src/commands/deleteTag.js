@@ -1,6 +1,6 @@
 // @ts-check
-import { FileSystem } from '../models/FileSystem.js'
 import { GitRefManager } from '../managers/GitRefManager.js'
+import { FileSystem } from '../models/FileSystem.js'
 
 /**
  * Delete a local tag ref

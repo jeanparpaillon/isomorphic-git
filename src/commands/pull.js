@@ -1,12 +1,12 @@
 // @ts-check
-import * as types from '../typedefs.js'
 
-import { FileSystem } from '../models/FileSystem.js'
 import { _checkout } from '../commands/checkout.js'
 import { _currentBranch } from '../commands/currentBranch.js'
 import { _fetch } from '../commands/fetch.js'
 import { _merge } from '../commands/merge.js'
 import { MissingParameterError } from '../errors/MissingParameterError.js'
+import { FileSystem } from '../models/FileSystem.js'
+import * as types from '../typedefs.js'
 
 /**
  * @param {object} args
@@ -125,7 +125,7 @@ export async function _pull({
       dryRun: false,
       noUpdateBranch: false,
     })
-    
+
     await _checkout({
       fs,
       cache,

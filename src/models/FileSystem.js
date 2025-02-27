@@ -58,7 +58,7 @@ function bindFs(target, fs) {
 
 /**
  * This is just a collection of helper functions really. At least that's how it started.
- * 
+ *
  * @class
  * @constructor
  * @public

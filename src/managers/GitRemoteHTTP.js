@@ -1,9 +1,9 @@
 // @ts-check
-import * as types from '../typedefs.js'
 
 import { HttpError } from '../errors/HttpError.js'
 import { SmartHttpError } from '../errors/SmartHttpError.js'
 import { UserCanceledError } from '../errors/UserCanceledError.js'
+import * as types from '../typedefs.js'
 import { calculateBasicAuthHeader } from '../utils/calculateBasicAuthHeader.js'
 import { collect } from '../utils/collect.js'
 import { extractAuthFromUrl } from '../utils/extractAuthFromUrl.js'
@@ -76,7 +76,7 @@ export class GitRemoteHTTP {
     headers,
     protocolVersion,
   }) {
-    let { url, creds } = extractAuthFromUrl(_origUrl)
+    const { url, creds } = extractAuthFromUrl(_origUrl)
     const proxifiedURL = corsProxy ? corsProxify(corsProxy, url) : url
     if (creds.username || creds.password) {
       headers.Authorization = calculateBasicAuthHeader(creds)
@@ -84,7 +84,6 @@ export class GitRemoteHTTP {
     if (protocolVersion === 2) {
       headers['Git-Protocol'] = 'version=2'
     }
-
 
     let res = await http.request({
       onProgress,
@@ -97,7 +96,6 @@ export class GitRemoteHTTP {
     let auth
     let providedAuthBefore = false
     do {
-      
       // the default loop behavior
       tryAgain = false
 

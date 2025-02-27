@@ -1,5 +1,4 @@
 // @ts-check
-import * as types from '../typedefs.js'
 
 import { MissingNameError } from '../errors/MissingNameError.js'
 import { MissingParameterError } from '../errors/MissingParameterError.js'
@@ -9,6 +8,7 @@ import { GitRefManager } from '../managers/GitRefManager.js'
 import { GitCommit } from '../models/GitCommit.js'
 import { GitTree } from '../models/GitTree.js'
 import { _writeObject as writeObject } from '../storage/writeObject.js'
+import * as types from '../typedefs.js'
 import { flatFileListToDirectoryStructure } from '../utils/flatFileListToDirectoryStructure.js'
 import { normalizeAuthorObject } from '../utils/normalizeAuthorObject.js'
 import { normalizeCommitterObject } from '../utils/normalizeCommitterObject.js'

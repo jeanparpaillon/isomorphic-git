@@ -1,14 +1,14 @@
 // @ts-check
-import * as types from '../typedefs.js'
 
-import { FileSystem } from '../models/FileSystem.js'
 import { TREE } from '../commands/TREE.js'
 import { _walk } from '../commands/walk.js'
 import { MergeConflictError } from '../errors/MergeConflictError.js'
 import { MergeNotSupportedError } from '../errors/MergeNotSupportedError.js'
-import { GitTree } from '../models/GitTree.js'
+import { FileSystem } from '../models/FileSystem.js'
 import { GitIndex } from '../models/GitIndex.js'
+import { GitTree } from '../models/GitTree.js'
 import { _writeObject as writeObject } from '../storage/writeObject.js'
+import * as types from '../typedefs.js'
 
 import { basename } from './basename.js'
 import { join } from './join.js'
@@ -351,9 +351,9 @@ async function mergeBlobs({
 }
 
 /**
- * 
- * @param {types.WalkerEntry} tree 
- * 
+ *
+ * @param {types.WalkerEntry} tree
+ *
  * @returns { Promise<string> }
  */
 async function resolveContent(tree) {

@@ -10,14 +10,14 @@ import { resolveTree } from './resolveTree.js'
 const EMPTY_OID = 'e69de29bb2d1d6434b8b29ae775ad8c2e48c5391'
 
 /**
- * 
+ *
  * @param {Object} args
  * @param {FileSystem} args.fs
  * @param {any} args.cache
  * @param {string} args.gitdir
  * @param {string} args.oid
  * @param {string} args.fileId
- * @returns 
+ * @returns
  */
 export async function resolveFileIdInTree({ fs, cache, gitdir, oid, fileId }) {
   if (fileId === EMPTY_OID) return
@@ -45,7 +45,7 @@ export async function resolveFileIdInTree({ fs, cache, gitdir, oid, fileId }) {
 }
 
 /**
- * 
+ *
  * @param {Object} args
  * @param {FileSystem} args.fs
  * @param {any} args.cache
@@ -55,7 +55,7 @@ export async function resolveFileIdInTree({ fs, cache, gitdir, oid, fileId }) {
  * @param {string} args.oid
  * @param {string[]} [args.filepaths = []]
  * @param {string} [args.parentPath]
- * @returns 
+ * @returns
  */
 async function _resolveFileId({
   fs,

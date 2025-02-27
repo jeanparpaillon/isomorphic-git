@@ -1,15 +1,15 @@
 // @ts-check
-import * as types from '../typedefs.js'
 
 import { FileSystem } from '../models/FileSystem.js'
 import { GitObject } from '../models/GitObject.js'
 import { writeObjectLoose } from '../storage/writeObjectLoose.js'
+import * as types from '../typedefs.js'
 import { deflate } from '../utils/deflate.js'
 import { shasum } from '../utils/shasum.js'
 
 /**
  *  Resolves successfully with the SHA-1 object id of the written object
- * 
+ *
  * @param {object} args
  * @param {FileSystem} args.fs
  * @param {string} args.gitdir
@@ -18,7 +18,7 @@ import { shasum } from '../utils/shasum.js'
  * @param {'content'|'wrapped'|'deflated'} [args.format = 'content']
  * @param {string} [args.oid = undefined]
  * @param {boolean} [args.dryRun = false]
- * 
+ *
  * @returns { Promise<string>}
  */
 export async function _writeObject({

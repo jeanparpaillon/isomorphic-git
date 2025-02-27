@@ -1,8 +1,8 @@
 // @ts-check
-import * as types from '../typedefs.js'
 
 import { ParseError } from '../errors/ParseError.js'
 import { GitPktLine } from '../models/GitPktLine.js'
+import * as types from '../typedefs.js'
 
 export async function parseReceivePackResponse(packfile) {
   /** @type types.PushResult */

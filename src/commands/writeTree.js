@@ -1,8 +1,8 @@
 // @ts-check
-import * as types from '../typedefs.js'
 
 import { GitTree } from '../models/GitTree.js'
 import { _writeObject as writeObject } from '../storage/writeObject.js'
+import * as types from '../typedefs.js'
 
 /**
  * @param {object} args

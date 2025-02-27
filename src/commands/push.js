@@ -1,5 +1,4 @@
 // @ts-check
-import * as types from '../typedefs.js'
 
 import { _currentBranch } from '../commands/currentBranch.js'
 import { _findMergeBase } from '../commands/findMergeBase.js'
@@ -16,6 +15,7 @@ import { GitConfigManager } from '../managers/GitConfigManager.js'
 import { GitRefManager } from '../managers/GitRefManager.js'
 import { GitRemoteManager } from '../managers/GitRemoteManager.js'
 import { GitSideBand } from '../models/GitSideBand.js'
+import * as types from '../typedefs.js'
 import { filterCapabilities } from '../utils/filterCapabilities.js'
 import { forAwait } from '../utils/forAwait.js'
 import { pkg } from '../utils/pkg.js'

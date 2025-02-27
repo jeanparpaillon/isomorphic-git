@@ -1,6 +1,6 @@
 // @ts-check
-import { FileSystem } from '../models/FileSystem.js'
 import { GitConfigManager } from '../managers/GitConfigManager.js'
+import { FileSystem } from '../models/FileSystem.js'
 
 /**
  * @param {Object} args

@@ -1,8 +1,8 @@
 // @ts-check
-import * as types from '../typedefs.js'
 
 import { _findRoot } from '../commands/findRoot.js'
 import { FileSystem } from '../models/FileSystem.js'
+import * as types from '../typedefs.js'
 import { assertParameter } from '../utils/assertParameter.js'
 
 /**

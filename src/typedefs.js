@@ -3,13 +3,13 @@ import './typedefs-http.js'
 
 /**
  * A commit author or committer.
- * 
+ *
  * @typedef {Object} PersonInfo
  * @property {string} name - The name of the author or committer
  * @property {string} email - The email of the author or committer
  * @property {number} timestamp - UTC Unix timestamp in seconds
  * @property {number} timezoneOffset - Timezone difference from UTC in minutes
- * 
+ *
  */
 
 /**

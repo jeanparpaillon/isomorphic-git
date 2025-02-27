@@ -173,7 +173,7 @@ export class GitIndex {
   }
 
   /**
-   * 
+   *
    * @param {object} opts
    * @param {string} opts.filepath
    * @param {object} [opts.stats]

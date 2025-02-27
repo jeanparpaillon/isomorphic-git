@@ -1,7 +1,6 @@
 // @ts-check
 import AsyncLock from 'async-lock'
 
-import { FileSystem } from '../models/FileSystem.js'
 import { STAGE } from '../commands/STAGE.js'
 import { TREE } from '../commands/TREE.js'
 import { WORKDIR } from '../commands/WORKDIR.js'
@@ -11,6 +10,7 @@ import { InternalError } from '../errors/InternalError.js'
 import { NotFoundError } from '../errors/NotFoundError.js'
 import { GitIgnoreManager } from '../managers/GitIgnoreManager.js'
 import { GitIndexManager } from '../managers/GitIndexManager.js'
+import { FileSystem } from '../models/FileSystem.js'
 import { _readObject } from '../storage/readObject.js'
 import { readObjectLoose } from '../storage/readObjectLoose.js'
 import { _writeObject } from '../storage/writeObject.js'
@@ -31,13 +31,13 @@ export async function acquireLock(ref, callback) {
 
 /**
  * make sure filepath, blob type and blob object (from loose objects) plus oid are in sync and valid
- * 
- * @param {FileSystem} fs 
- * @param {string} gitdir 
- * @param {string} dir 
- * @param {string} filepath 
- * @param {string | null} oid 
- * @returns 
+ *
+ * @param {FileSystem} fs
+ * @param {string} gitdir
+ * @param {string} dir
+ * @param {string} filepath
+ * @param {string | null} oid
+ * @returns
  */
 async function checkAndWriteBlob(fs, gitdir, dir, filepath, oid = null) {
   const currentFilepath = join(dir, filepath)

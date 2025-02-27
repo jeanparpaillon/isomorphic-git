@@ -1,5 +1,4 @@
 // @ts-check
-import * as types from '../typedefs.js'
 
 import { _readTree } from '../commands/readTree.js'
 import { NotFoundError } from '../errors/NotFoundError.js'
@@ -10,6 +9,7 @@ import { GitRefManager } from '../managers/GitRefManager.js'
 import { FileSystem } from '../models/FileSystem.js'
 import { GitTree } from '../models/GitTree.js'
 import { _readObject } from '../storage/readObject.js'
+import * as types from '../typedefs.js'
 import { assertParameter } from '../utils/assertParameter.js'
 import { compareStats } from '../utils/compareStats.js'
 import { hashObject } from '../utils/hashObject.js'

@@ -1,11 +1,11 @@
 // @ts-check
-import * as types from '../typedefs.js'
 
 import { InvalidFilepathError } from '../errors/InvalidFilepathError.js'
 import { NotFoundError } from '../errors/NotFoundError.js'
 import { GitIndexManager } from '../managers/GitIndexManager.js'
 import { FileSystem } from '../models/FileSystem.js'
 import { _writeObject } from '../storage/writeObject.js'
+import * as types from '../typedefs.js'
 import { assertParameter } from '../utils/assertParameter.js'
 import { join } from '../utils/join.js'
 import { posixifyPathBuffer } from '../utils/posixifyPathBuffer.js'
@@ -148,15 +148,21 @@ export async function updateIndex({
           ? await fs.readlink(join(dir, filepath)).then(posixifyPathBuffer)
           : await fs.read(join(dir, filepath))
         if (object === null) throw new NotFoundError(filepath)
-        oid = await _writeObject({ fs, gitdir, type: 'blob', format: 'content', object })
+        oid = await _writeObject({
+          fs,
+          gitdir,
+          type: 'blob',
+          format: 'content',
+          object,
+        })
 
-      index.insert({
-        filepath,
-        oid: oid,
-        stats,
-      })
+        index.insert({
+          filepath,
+          oid: oid,
+          stats,
+        })
 
-      return oid
+        return oid
       }
     })
   } catch (err) {

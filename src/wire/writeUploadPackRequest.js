@@ -2,8 +2,8 @@
 import { GitPktLine } from '../models/GitPktLine.js'
 
 /**
- * 
- * @param {object} opts 
+ *
+ * @param {object} opts
  * @param {string[]} [opts.capabilities]
  * @param {string[]} [opts.wants]
  * @param {string[]} [opts.haves]
@@ -11,7 +11,7 @@ import { GitPktLine } from '../models/GitPktLine.js'
  * @param {number | null} [opts.depth]
  * @param {Date | null} [opts.since]
  * @param {string[]} [opts.exclude]
- * @returns 
+ * @returns
  */
 export function writeUploadPackRequest({
   capabilities = [],

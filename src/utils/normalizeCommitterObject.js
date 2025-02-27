@@ -1,7 +1,7 @@
 // @ts-check
-import * as types from '../typedefs.js'
-import { FileSystem } from '../models/FileSystem.js'
 import { _getConfig } from '../commands/getConfig.js'
+import { FileSystem } from '../models/FileSystem.js'
+import * as types from '../typedefs.js'
 
 import { assignDefined } from './assignDefined.js'
 /**

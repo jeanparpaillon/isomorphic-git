@@ -1,9 +1,9 @@
 // @ts-check
-import * as types from '../typedefs.js'
 
 import { _annotatedTag } from '../commands/annotatedTag.js'
 import { MissingNameError } from '../errors/MissingNameError.js'
 import { FileSystem } from '../models/FileSystem.js'
+import * as types from '../typedefs.js'
 import { assertParameter } from '../utils/assertParameter.js'
 import { join } from '../utils/join.js'
 import { normalizeAuthorObject } from '../utils/normalizeAuthorObject.js'

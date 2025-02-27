@@ -11,8 +11,8 @@ import { shasum } from '../utils/shasum.js'
  */
 
 /**
- * 
- * @param {*} param0 
+ *
+ * @param {*} param0
  * @returns {Promise<HashObjectResult>}
  */
 export async function hashObject({

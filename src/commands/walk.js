@@ -1,6 +1,5 @@
 // @ts-check
 import * as types from '../typedefs.js'
-
 import { arrayRange } from '../utils/arrayRange.js'
 import { flat } from '../utils/flat.js'
 import { GitWalkSymbol } from '../utils/symbols.js'

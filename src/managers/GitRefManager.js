@@ -247,9 +247,9 @@ export class GitRefManager {
    * @param {import('../models/FileSystem.js').FileSystem} args.fs
    * @param {string} args.gitdir
    * @param {string} args.ref
-   * 
+   *
    * @returns {Promise<string>}
-   * 
+   *
    */
   static async expand({ fs, gitdir, ref }) {
     // Is it a complete and valid SHA?

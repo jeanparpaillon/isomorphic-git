@@ -1,5 +1,6 @@
 // @ts-check
 import * as types from '../typedefs.js'
+
 import { BaseError } from './BaseError.js'
 
 export class ObjectTypeError extends BaseError {
@@ -10,13 +11,11 @@ export class ObjectTypeError extends BaseError {
    * @param {string} [filepath]
    */
   constructor(oid, actual, expected = undefined, filepath) {
-    const msg = expected 
+    const msg = expected
       ? `Object ${oid} ${
-      filepath ? `at ${filepath}` : ''
-    }was anticipated to be a ${expected} but it is a ${actual}.`
-    : `Object ${oid} ${
-      filepath ? `at ${filepath}` : ''
-    }is a ${actual}.`
+          filepath ? `at ${filepath}` : ''
+        }was anticipated to be a ${expected} but it is a ${actual}.`
+      : `Object ${oid} ${filepath ? `at ${filepath}` : ''}is a ${actual}.`
 
     super(msg)
     this.code = this.name = ObjectTypeError.code

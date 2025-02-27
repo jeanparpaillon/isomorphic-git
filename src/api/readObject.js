@@ -1,5 +1,4 @@
 // @ts-check
-import * as types from '../typedefs.js'
 
 import { ObjectTypeError } from '../errors/ObjectTypeError.js'
 import { FileSystem } from '../models/FileSystem.js'
@@ -7,6 +6,7 @@ import { GitAnnotatedTag } from '../models/GitAnnotatedTag.js'
 import { GitCommit } from '../models/GitCommit.js'
 import { GitTree } from '../models/GitTree.js'
 import { _readObject } from '../storage/readObject.js'
+import * as types from '../typedefs.js'
 import { assertParameter } from '../utils/assertParameter.js'
 import { join } from '../utils/join.js'
 import { resolveFilepath } from '../utils/resolveFilepath.js'
@@ -257,10 +257,7 @@ export async function readObject({
           result.object = GitAnnotatedTag.from(result.object).parse()
           break
         default:
-          throw new ObjectTypeError(
-            result.oid,
-            result.type
-          )
+          throw new ObjectTypeError(result.oid, result.type)
       }
     } else if (result.format === 'deflated' || result.format === 'wrapped') {
       result.type = result.format

@@ -1,7 +1,6 @@
 // @ts-check
-import * as types from '../typedefs.js'
-
 import { GitRemoteManager } from '../managers/GitRemoteManager.js'
+import * as types from '../typedefs.js'
 import { assertParameter } from '../utils/assertParameter.js'
 import { formatInfoRefs } from '../utils/formatInfoRefs.js'
 

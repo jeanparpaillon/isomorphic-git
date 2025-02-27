@@ -7,8 +7,8 @@ import { toHex } from './toHex.js'
 let supportsSubtleSHA1 = null
 
 /**
- * 
- * @param {*} buffer 
+ *
+ * @param {*} buffer
  * @returns {Promise<string>}
  */
 export async function shasum(buffer) {

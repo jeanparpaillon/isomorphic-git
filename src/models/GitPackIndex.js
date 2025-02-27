@@ -44,7 +44,7 @@ function otherVarIntDecode(reader, startWith) {
 /**
  * @class GitPackIndex
  * @property {Array<string>} hashes
- * @property {Object<string, number>} crcs 
+ * @property {Object<string, number>} crcs
  * @property {Map<string, number>} offsets
  * @property {string} packfileSha
  * @property {Function} getExternalRefDelta

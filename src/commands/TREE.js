@@ -1,7 +1,6 @@
 // @ts-check
-import * as types from '../typedefs.js'
-
 import { GitWalkerRepo } from '../models/GitWalkerRepo.js'
+import * as types from '../typedefs.js'
 import { GitWalkSymbol } from '../utils/symbols.js'
 
 /**

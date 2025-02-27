@@ -1,5 +1,4 @@
 // @ts-check
-import * as types from '../typedefs.js'
 
 import {
   _stashPush,
@@ -11,6 +10,7 @@ import {
 } from '../commands/stash.js'
 import { InvalidRefNameError } from '../errors/InvalidRefNameError.js'
 import { FileSystem } from '../models/FileSystem.js'
+import * as types from '../typedefs.js'
 import { assertParameter } from '../utils/assertParameter.js'
 import { join } from '../utils/join.js'
 

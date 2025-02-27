@@ -1,5 +1,4 @@
 // @ts-check
-import * as types from '../typedefs.js'
 
 import { STAGE } from '../commands/STAGE.js'
 import { TREE } from '../commands/TREE.js'
@@ -8,6 +7,7 @@ import { _walk } from '../commands/walk.js'
 import { IndexResetError } from '../errors/IndexResetError.js'
 import { GitIndexManager } from '../managers/GitIndexManager.js'
 import { FileSystem } from '../models/FileSystem.js'
+import * as types from '../typedefs.js'
 import { assertParameter } from '../utils/assertParameter.js'
 import { join } from '../utils/join.js'
 import { modified } from '../utils/modified.js'
@@ -80,7 +80,7 @@ export async function abortMerge({
         }
 
         if (unmodified) return false
-        else throw new IndexResetError(path)
+        else throw new IndexResetError([path])
       },
     })
 

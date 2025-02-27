@@ -1,7 +1,6 @@
 // @ts-check
-import * as types from '../typedefs.js'
-
 import { InternalError } from '../errors/InternalError.js'
+import * as types from '../typedefs.js'
 import { formatAuthor } from '../utils/formatAuthor.js'
 import { indent } from '../utils/indent.js'
 import { normalizeNewlines } from '../utils/normalizeNewlines.js'
@@ -65,7 +64,7 @@ export class GitCommit {
    * @property {Array<string>} parent
    * @property {types.PersonInfo} [author]
    * @property {types.PersonInfo} [committer]
-   * 
+   *
    * @returns {ParsedHeaders}
    */
   parseHeaders() {
@@ -80,7 +79,7 @@ export class GitCommit {
       }
     }
     const obj = {
-      parent: []
+      parent: [],
     }
     for (const h of hs) {
       const key = h.slice(0, h.indexOf(' '))

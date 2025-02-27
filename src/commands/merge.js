@@ -1,7 +1,5 @@
 // @ts-check
-import * as types from '../typedefs.js'
 
-import { FileSystem } from '../models/FileSystem.js'
 import { _commit } from '../commands/commit.js'
 import { _currentBranch } from '../commands/currentBranch.js'
 import { _findMergeBase } from '../commands/findMergeBase.js'
@@ -10,6 +8,8 @@ import { MergeConflictError } from '../errors/MergeConflictError.js'
 import { MergeNotSupportedError } from '../errors/MergeNotSupportedError.js'
 import { GitIndexManager } from '../managers/GitIndexManager.js'
 import { GitRefManager } from '../managers/GitRefManager.js'
+import { FileSystem } from '../models/FileSystem.js'
+import * as types from '../typedefs.js'
 import { abbreviateRef } from '../utils/abbreviateRef.js'
 import { mergeTree } from '../utils/mergeTree.js'
 

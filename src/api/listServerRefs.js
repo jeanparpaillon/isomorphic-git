@@ -1,7 +1,6 @@
 // @ts-check
-import * as types from '../typedefs.js'
-
 import { GitRemoteHTTP } from '../managers/GitRemoteHTTP.js'
+import * as types from '../typedefs.js'
 import { assertParameter } from '../utils/assertParameter.js'
 import { formatInfoRefs } from '../utils/formatInfoRefs.js'
 import { parseListRefsResponse } from '../wire/parseListRefsResponse.js'

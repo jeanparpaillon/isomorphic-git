@@ -7,12 +7,12 @@ import { GitPktLine } from '../models/GitPktLine.js'
  * @property {string} oid
  * @property {string} fullRef
  */
- 
-/**  
+
+/**
  * @param {Object} args
  * @param {string[]} args.capabilities
  * @param {PackTriplet[]} args.triplets
- * @returns 
+ * @returns
  */
 export async function writeReceivePackRequest({
   capabilities = [],
