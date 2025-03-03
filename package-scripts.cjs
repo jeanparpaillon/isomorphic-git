@@ -50,12 +50,12 @@ module.exports = {
         'build.typings',
         'build.webpack',
         'build.indexjson',
-        'build.treeshake',
-        'build.docs',
+        // 'build.treeshake',
+        // 'build.docs',
         'build.size',
         'build.pack'
       ),
-      rollup: 'rollup -c --no-treeshake',
+      rollup: 'rollup -c --no-treeshake --bundleConfigAsCjs',
       typings:
         'tsc -p declaration.tsconfig.json && cp index.d.ts index.umd.min.d.ts',
       webpack: 'webpack --config webpack.config.cjs',

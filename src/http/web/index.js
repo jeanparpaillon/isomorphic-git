@@ -1,3 +1,4 @@
+// @ts-check
 /* eslint-env browser */
 import '../../typedefs-http.js'
 import { collect } from '../../utils/collect.js'
@@ -16,13 +17,15 @@ export async function request({
   headers = {},
   body,
 }) {
+  let req_body = undefined
+
   // streaming uploads aren't possible yet in the browser
   if (body) {
-    body = await collect(body)
+    req_body = collect(body)
   }
-  const res = await fetch(url, { method, headers, body })
+  const res = await fetch(url, { method, headers, body: req_body })
   const iter =
-    res.body && res.body.getReader
+    res.body
       ? fromStream(res.body)
       : [new Uint8Array(await res.arrayBuffer())]
   // convert Header object to ordinary JSON
@@ -32,7 +35,7 @@ export async function request({
   }
   return {
     url: res.url,
-    method: res.method,
+    method: method,
     statusCode: res.status,
     statusMessage: res.statusText,
     body: iter,
